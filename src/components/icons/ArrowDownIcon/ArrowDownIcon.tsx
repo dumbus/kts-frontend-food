@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Icon, { IconProps } from '../Icon';
 
-import './ArrowDownIcon.scss';
+import styles from './ArrowDownIcon.module.scss';
 
 const ArrowDownIcon: React.FC<IconProps> = ({ color = 'primary', ...props }) => {
-  const className = `color-text-${color}`;
+  const className = styles[`color-text-${color}`];
 
   return (
     <Icon {...props}>

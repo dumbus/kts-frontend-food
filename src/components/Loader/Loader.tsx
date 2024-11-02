@@ -1,6 +1,7 @@
+import classNames from 'classnames';
 import * as React from 'react';
 
-import './Loader.scss';
+import styles from './Loader.module.scss';
 
 export type LoaderProps = {
   /** Размер */
@@ -10,9 +11,12 @@ export type LoaderProps = {
 };
 
 const Loader: React.FC<LoaderProps> = ({ size = 'l', className = '' }) => {
+  const containerClassName = classNames(styles['loader-container'], styles[`loader-container-${size}`], className);
+  const circleClassName = classNames(styles['loader-circle'], styles[`loader-circle-${size}`]);
+
   return (
-    <div className={`loader-container loader-container-${size} ${className}`}>
-      <div className={`loader-circle loader-circle-${size}`} />
+    <div className={containerClassName}>
+      <div className={circleClassName} />
     </div>
   );
 };

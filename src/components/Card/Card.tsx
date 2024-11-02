@@ -3,7 +3,7 @@ import React from 'react';
 
 import Text from '../Text';
 
-import './Card.scss';
+import styles from './Card.module.scss';
 
 export type CardProps = {
   /** Дополнительный classname */
@@ -34,37 +34,37 @@ const Card: React.FC<CardProps> = ({
   onClick,
   actionSlot,
 }) => {
-  const cardClasses = classNames('card', className);
+  const cardClasses = classNames(styles['card'], className);
 
   return (
     <div className={cardClasses} onClick={onClick}>
-      <div className="card-image-container">
-        <img src={image} alt={title?.toString()} className="card-img" />
+      <div className={styles['card-image-container']}>
+        <img src={image} alt={title?.toString()} className={styles['card-img']} />
       </div>
 
-      <div className="card-content">
-        <div className="card-body">
+      <div className={styles['card-content']}>
+        <div className={styles['card-body']}>
           {captionSlot && (
-            <Text className="card-caption" view="p-14" color="secondary" weight="medium">
+            <Text className={styles['card-caption']} view="p-14" color="secondary" weight="medium">
               {captionSlot}
             </Text>
           )}
 
-          <Text className="card-title" tag="h3" view="p-20" maxLines={2} weight="medium">
+          <Text className={styles['card-title']} tag="h3" view="p-20" maxLines={2} weight="medium">
             {title}
           </Text>
-          <Text className="card-subtitle" view="p-16" color="secondary" maxLines={3}>
+          <Text className={styles['card-subtitle']} view="p-16" color="secondary" maxLines={3}>
             {subtitle}
           </Text>
         </div>
 
-        <div className="card-footer">
+        <div className={styles['card-footer']}>
           {contentSlot && (
-            <Text className="card-content-slot" tag="div" view="p-18" weight="bold">
+            <Text className={styles['card-content-slot']} tag="div" view="p-18" weight="bold">
               {contentSlot}
             </Text>
           )}
-          {actionSlot && <div className="card-action-slot">{actionSlot}</div>}
+          {actionSlot && <div className={styles['card-action-slot']}>{actionSlot}</div>}
         </div>
       </div>
     </div>

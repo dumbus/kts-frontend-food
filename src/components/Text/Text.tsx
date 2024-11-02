@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './Text.scss';
+import styles from './Text.module.scss';
 
 export type TextProps = {
   /** Дополнительный класс */
@@ -21,10 +21,10 @@ export type TextProps = {
 
 const Text: React.FC<TextProps> = ({ className = '', view, tag: Tag = 'p', weight, children, color, maxLines }) => {
   const classes = [
-    'text',
-    view ? `text-${view}` : '',
-    weight ? `text-weight-${weight}` : '',
-    color ? `text-color-${color}` : '',
+    styles['text'],
+    view ? styles[`text-${view}`] : '',
+    weight ? styles[`text-weight-${weight}`] : '',
+    color ? styles[`text-color-${color}`] : '',
     className,
   ]
     .filter(Boolean)

@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Input from '../Input';
 import ArrowDownIcon from '../icons/ArrowDownIcon';
 
-import './MultiDropdown.scss';
+import styles from './MultiDropdown.module.scss';
 
 export type Option = {
   /** Ключ варианта, используется для отправки на бек/использования в коде */
@@ -67,7 +67,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ className, options, value
     ? options.filter((option) => option.value.toLowerCase().includes(filter.toLowerCase()))
     : options;
 
-  const rootClass = classNames('multi-dropdown', className);
+  const rootClass = classNames(styles['multi-dropdown'], className);
 
   return (
     <div className={rootClass} ref={dropdownRef}>
@@ -81,13 +81,13 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ className, options, value
       />
 
       {isOpen && !disabled && filteredOptions.length > 0 && (
-        <div className="multi-dropdown-options">
+        <div className={styles['multi-dropdown-options']}>
           {filteredOptions.length > 0
             ? filteredOptions.map((option) => {
                 const isSelected = value.some((selected) => selected.key === option.key);
 
-                const optionClassname = classNames('multi-dropdown-option', {
-                  selected: isSelected,
+                const optionClassname = classNames(styles['multi-dropdown-option'], {
+                  [styles.selected]: isSelected,
                 });
 
                 return (
