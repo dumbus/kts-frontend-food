@@ -1,7 +1,9 @@
+import RecipesListPage from './pages/RecipesListPage';
+
 import './App.css';
 
 const App = () => {
-  return <div>App</div>;
+  return <RecipesListPage />;
 };
 
 export default App;
