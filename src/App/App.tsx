@@ -1,6 +1,6 @@
 import RecipesListPage from './pages/RecipesListPage';
 
-import './App.css';
+import 'styles/styles.scss';
 
 const App = () => {
   return <RecipesListPage />;

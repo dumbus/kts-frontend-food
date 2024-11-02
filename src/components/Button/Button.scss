@@ -1,0 +1,31 @@
+@use "../../styles/variables" as *;
+
+.button {
+  display: flex;
+  align-items: center;
+  padding: $space-s $space-l;
+  background-color: $color-brand;
+  border: none;
+  border-radius: 10px;
+  color: $color-white;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: $color-brand-hover;
+}
+
+.button:active {
+  background-color: $color-brand-active;
+}
+
+.button:disabled,
+.button:disabled.button:hover,
+.button:disabled.button:active {
+  background-color: $color-brand-disabled;
+}
+
+/* loading + hover = brand-color (according to tests) */
+.button-loading.button:hover {
+  background-color: $color-brand;
+}

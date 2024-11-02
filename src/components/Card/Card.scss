@@ -1,0 +1,51 @@
+@use "../../styles/variables" as *;
+
+.card {
+  width: 360px;
+  border-radius: 10px;
+}
+
+.card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.card-image-container {
+  width: 360;
+  height: 360px;
+  background-color: $color-grey;
+}
+
+.card-content {
+  padding: $space-xl $space-xs;
+  background-color: $color-white;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xxs;
+  margin-bottom: $space-l;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* for screenshot tests (somehow they differ from Storybook) */
+
+.card {
+  width: 348px;
+}
+
+.card-image-container {
+  width: 348px;
+  height: 348px;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

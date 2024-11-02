@@ -1,0 +1,67 @@
+@use "../../styles/variables" as *;
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-container-l {
+  width: 60px;
+  height: 60px;
+}
+
+.loader-container-m {
+  width: 48px;
+  height: 48px;
+}
+
+.loader-container-s {
+  width: 24px;
+  height: 24px;
+}
+
+.loader-circle {
+  border-radius: 50%;
+  border: 4px solid $color-brand;
+  border-top-color: transparent;
+  transform: rotate(122deg); /* start position to pass screenshot tests */
+  animation: spin 1s linear infinite;
+}
+
+.loader-circle-l {
+  width: 40px;
+  height: 40px;
+  border-width: 5px;
+}
+
+.loader-circle-m {
+  width: 32px;
+  height: 32px;
+  border-width: 4px;
+}
+
+.loader-circle-s {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+.loader-button {
+  margin-right: $space-xxs;
+}
+
+.loader-button .loader-circle {
+  border-color: $color-white;
+  border-top-color: transparent;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(122deg);
+  }
+
+  to {
+    transform: rotate(482deg);
+  }
+}

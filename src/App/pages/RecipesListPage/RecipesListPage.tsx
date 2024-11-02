@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 
+import Loader from 'components/Loader';
+import Text from 'components/Text';
+
 import FoodService from 'services/FoodService';
 
 import { IRecipeListItem } from 'utils/types';
@@ -28,7 +31,12 @@ const RecipesListPage = () => {
     console.log(`Some error occured: ${error}`);
   };
 
-  return <div>RecipesListPage</div>;
+  return (
+    <>
+      <Loader />
+      <Text>RecipesListPage</Text>
+    </>
+  );
 };
 
 export default RecipesListPage;
