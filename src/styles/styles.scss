@@ -1,4 +1,5 @@
 @use "./fonts" as *;
+@use "./variables" as *;
 
 html,
 body {
@@ -22,4 +23,12 @@ blockquote,
 figure,
 pre {
   margin: 0;
+}
+
+.container {
+  min-width: 100vw;
+  min-height: 100vh;
+  padding: 0 $container-padding $space-xxl $container-padding;
+  background-color: $color-bg;
+  overflow: hidden;
 }

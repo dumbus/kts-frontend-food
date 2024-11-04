@@ -1,0 +1,23 @@
+@use "../../../../../styles/variables" as *;
+
+.paginator {
+  display: flex;
+  justify-content: center;
+  margin-top: $space-xh;
+
+  &__container {
+    display: flex;
+  }
+
+  &__limit {
+    display: flex;
+  }
+
+  &__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 42px;
+  }
+}

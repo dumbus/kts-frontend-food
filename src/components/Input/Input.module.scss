@@ -2,7 +2,7 @@
 
 .input-container {
   position: relative;
-  width: 300px;
+  width: 100%;
   height: 52px;
 }
 
@@ -43,15 +43,15 @@
 
 /* for screenshot tests (somehow they differ from Storybook) */
 
-.input-container {
-  width: 400px;
-}
+// .input-container {
+//   width: 400px;
+// }
 
-.multi-dropdown .input,
-.multi-dropdown .input-container {
-  width: 370px;
-}
+// .multi-dropdown .input,
+// .multi-dropdown .input-container {
+//   width: 370px;
+// }
 
-.after-slot {
-  right: 4px;
-}
+// .after-slot {
+//   right: 4px;
+// }

@@ -1,0 +1,33 @@
+@use "../../../../../styles/variables" as *;
+
+.small-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 38px;
+  height: 42px;
+  border: none;
+  background-color: transparent;
+  color: $color-text-primary;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-brand-hover;
+  }
+
+  &:active {
+    background-color: $color-brand-active;
+  }
+
+  &:disabled {
+    background-color: transparent;
+    color: $color-text-primary;
+    cursor: default;
+  }
+
+  &.small-button__active {
+    background-color: $color-text-accent;
+    color: $color-white;
+    opacity: 1;
+  }
+}

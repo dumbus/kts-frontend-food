@@ -1,7 +1,7 @@
 @use "../../styles/variables" as *;
 
 .multi-dropdown {
-  width: 370px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   gap: $space-xxs;
@@ -28,6 +28,6 @@
 
 /* for screenshot tests (somehow they differ from Storybook) */
 
-.multi-dropdown-options {
-  padding-bottom: 8px;
-}
+// .multi-dropdown-options {
+//   padding-bottom: 8px;
+// }

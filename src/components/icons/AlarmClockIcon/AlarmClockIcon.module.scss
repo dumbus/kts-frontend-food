@@ -1,17 +1,17 @@
 @use "../../../styles/variables" as *;
 
 .color-text-primary {
-  fill: $color-text-primary;
+  stroke: $color-text-primary;
 }
 
 .color-text-secondary {
-  fill: $color-text-secondary;
+  stroke: $color-text-secondary;
 }
 
 .color-text-accent {
-  fill: $color-text-accent;
+  stroke: $color-text-accent;
 }
 
 .color-text-white {
-  fill: $color-white;
+  stroke: $color-white;
 }

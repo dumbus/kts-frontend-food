@@ -1,0 +1,44 @@
+@use "../../../styles/variables" as *;
+
+.recipes-list {
+  padding-bottom: $space-xxl;
+  position: relative;
+
+  &__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__header {
+    position: relative;
+    top: 0;
+    left: -$container-padding;
+    width: 100vw;
+    height: 572px;
+  }
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    object-fit: cover;
+    z-index: 10;
+  }
+
+  &__title {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+  }
+
+  &__subtitle {
+    margin-top: $space-h;
+    text-align: center;
+  }
+}

@@ -13,9 +13,11 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode;
   /** Class кнопки */
   className?: string;
+  /** Является ли кнопка текстовой  */
+  noText?: boolean;
 };
 
-const Button: React.FC<ButtonProps> = ({ loading = false, children, className, ...props }) => {
+const Button: React.FC<ButtonProps> = ({ loading = false, noText = false, children, className, ...props }) => {
   const buttonClasses = classNames(styles['button'], className, {
     [styles['button-loading']]: loading,
   });
@@ -23,9 +25,13 @@ const Button: React.FC<ButtonProps> = ({ loading = false, children, className, .
   return (
     <button className={buttonClasses} disabled={loading} {...props}>
       {loading && <Loader size="s" className={styles['loader-button']} />}
-      <Text view="p-18" weight="normal">
-        {children}
-      </Text>
+      {noText ? (
+        children
+      ) : (
+        <Text view="p-18" weight="normal">
+          {children}
+        </Text>
+      )}
     </button>
   );
 };

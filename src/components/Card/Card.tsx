@@ -45,7 +45,7 @@ const Card: React.FC<CardProps> = ({
       <div className={styles['card-content']}>
         <div className={styles['card-body']}>
           {captionSlot && (
-            <Text className={styles['card-caption']} view="p-14" color="secondary" weight="medium">
+            <Text className={styles['card-caption']} view="p-14" color="secondary" weight="medium" tag="div">
               {captionSlot}
             </Text>
           )}
@@ -60,7 +60,7 @@ const Card: React.FC<CardProps> = ({
 
         <div className={styles['card-footer']}>
           {contentSlot && (
-            <Text className={styles['card-content-slot']} tag="div" view="p-18" weight="bold">
+            <Text className={styles['card-content-slot']} tag="div" view="p-18" weight="bold" color="accent">
               {contentSlot}
             </Text>
           )}
