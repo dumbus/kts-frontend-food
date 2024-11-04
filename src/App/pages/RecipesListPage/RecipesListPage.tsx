@@ -13,7 +13,6 @@ import { IRecipeListItem } from 'utils/types';
 import Filters from './components/Filters';
 import Paginator from './components/Paginator';
 import RecipesList from './components/RecipesList';
-import SmallButton from './components/SmallButton';
 
 import styles from './RecipesListPage.module.scss';
 
@@ -80,7 +79,6 @@ const RecipesListPage = () => {
           <RecipesList recipesList={recipesList} />
 
           <Paginator page={1} pages={9} onPageSwitch={() => {}} />
-          {/* <SmallButton>1</SmallButton> */}
         </>
       )}
     </div>
