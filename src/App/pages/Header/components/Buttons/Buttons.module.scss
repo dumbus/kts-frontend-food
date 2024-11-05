@@ -1,0 +1,20 @@
+@use "../../../../../styles/variables" as *;
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: $space-xxs;
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}

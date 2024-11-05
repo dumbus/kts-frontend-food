@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 import Loader from 'components/Loader';
 import FoodService from 'services/FoodService';

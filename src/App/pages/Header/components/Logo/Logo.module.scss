@@ -1,0 +1,16 @@
+@use "../../../../../styles/variables" as *;
+
+.logo {
+  display: flex;
+  gap: $space-l;
+  cursor: pointer;
+
+  &__text {
+    display: flex;
+    align-items: center;
+  }
+
+  &:hover {
+    color: $color-brand;
+  }
+}
