@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import Loader from 'components/Loader';
 
-// import FoodService from 'services/FoodService';
+import FoodService from 'services/FoodService';
 import { getTestRecipes } from 'utils/getTestRecipes';
 import { IRecipeListItem } from 'utils/types';
 
@@ -18,6 +18,8 @@ const RecipesListPage = () => {
   const [recipesList, setRecipesList] = useState<IRecipeListItem[]>([]);
   const [isLoading, setLoading] = useState(true);
 
+  const foodService = new FoodService();
+
   // ========================= Development with mock data =========================
 
   useEffect(() => {
@@ -29,14 +31,14 @@ const RecipesListPage = () => {
   }, [recipesList]);
 
   const onRequest = () => {
-    const recipes = getTestRecipes();
-    setRecipesList(recipes);
+    const rawRecipes = getTestRecipes();
+    const recipesData = foodService._transformRecipeListData(rawRecipes);
+
+    setRecipesList(recipesData);
     setLoading(false);
   };
 
   // ========================= Get real data from API =========================
-
-  // const foodService = new FoodService();
 
   // useEffect(() => {
   //   onRequest();

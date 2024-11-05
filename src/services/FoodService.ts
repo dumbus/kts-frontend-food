@@ -1,61 +1,27 @@
 import axios from 'axios';
 
 import { getClosestFraction } from 'utils/getClosestFraction';
-import { IRecipeListItem, ISingleRecipe, IDirection } from 'utils/types';
+import {
+  IRecipeListItem,
+  ISingleRecipe,
+  IRawRecipeData,
+  IRawSingleRecipeData,
+  IIngredient,
+  IDirection,
+} from 'utils/types';
 
 type RawData = {
   number: number;
   offset: number;
   totalResults: number;
-  results: RawRecipeData[];
+  results: IRawRecipeData[];
 };
-
-// TODO: fix nutrition (now it is weightPerServing, not nutrition)
-type RawRecipeData = {
-  id: number;
-  title: string;
-  image: string;
-  cookingMinutes: number;
-  nutrition: INutrition;
-};
-
-interface INutrition {
-  weightPerServing: {
-    amount: number;
-    unit: string;
-  };
-  ingredients: IIngredient[];
-}
-
-interface IIngredient {
-  name: string;
-  amount: number;
-  unit: string;
-}
-
-interface RawSingleRecipeData {
-  title: string;
-  image: string;
-  preparationMinutes: number;
-  cookingMinutes: number;
-  aggregateLikes: number;
-  servings: number;
-  summary: string;
-  extendedIngredients: IIngredient[];
-  analyzedInstructions: Array<{
-    steps: Array<{
-      number: number;
-      step: string;
-      equipment: Array<{ name: string }>;
-    }>;
-  }>;
-}
 
 class FoodService {
   _apiBaseUrl = 'https://api.spoonacular.com/recipes';
   _apiKey = '727688aee1234493b060d3fad825adb8';
 
-  getResource = async (url: string): Promise<RawData | RawSingleRecipeData> => {
+  getResource = async (url: string): Promise<RawData | IRawSingleRecipeData> => {
     const response = await axios({
       method: 'get',
       url,
@@ -81,26 +47,28 @@ class FoodService {
   getRecipeById = async (id: number): Promise<ISingleRecipe> => {
     const requestUrl = `${this._apiBaseUrl}/${id}/information?apiKey=${this._apiKey}`;
 
-    const rawData = (await this.getResource(requestUrl)) as RawSingleRecipeData;
+    const rawData = (await this.getResource(requestUrl)) as IRawSingleRecipeData;
     const recipeData = this._transformSingleRecipeData(rawData);
 
     return recipeData;
   };
 
-  _transformRecipeListData = (rawRecipesData: RawRecipeData[]): IRecipeListItem[] => {
+  _transformRecipeListData = (rawRecipesData: IRawRecipeData[]): IRecipeListItem[] => {
     return rawRecipesData.map((rawRecipe) => {
+      const calories = rawRecipe.nutrition.nutrients?.find((nutrient) => nutrient.name === 'Calories')?.amount || 0;
+
       return {
         id: rawRecipe.id,
         title: rawRecipe.title,
         imageSrc: rawRecipe.image,
         cookingMinutes: rawRecipe.cookingMinutes,
-        nutrition: rawRecipe.nutrition.weightPerServing.amount,
+        nutrition: calories,
         ingredients: rawRecipe.nutrition.ingredients.map((ingredient) => ingredient.name),
       };
     });
   };
 
-  _transformSingleRecipeData = (rawRecipeData: RawSingleRecipeData): ISingleRecipe => {
+  _transformSingleRecipeData = (rawRecipeData: IRawSingleRecipeData): ISingleRecipe => {
     const recipeData: ISingleRecipe = {
       title: rawRecipeData.title,
       image: rawRecipeData.image,

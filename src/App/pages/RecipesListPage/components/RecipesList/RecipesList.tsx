@@ -26,7 +26,7 @@ const RecipesList: React.FC<RecipesListProps> = ({ recipesList }) => {
 
       const subtitle = ingredients.join(' + ');
 
-      const contentSlot = `${nutrition} kcal`;
+      const contentSlot = `${Math.round(nutrition)} kcal`;
 
       const actionSlot = <Button>Save</Button>;
 
