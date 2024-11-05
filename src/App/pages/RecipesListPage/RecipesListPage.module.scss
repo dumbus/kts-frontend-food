@@ -1,7 +1,7 @@
 @use "../../../styles/variables" as *;
 
 .recipes-list {
-  padding-bottom: $space-xxl;
+  padding: 0 $container-padding $space-xxl $container-padding;
   position: relative;
 
   &__loader {

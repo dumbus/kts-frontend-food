@@ -1,0 +1,16 @@
+@use "../../../../../styles/variables" as *;
+
+.directions {
+  margin-top: $space-xh;
+
+  &__list {
+    margin-top: $space-xxl;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xxs;
+    margin-top: $space-m;
+  }
+}

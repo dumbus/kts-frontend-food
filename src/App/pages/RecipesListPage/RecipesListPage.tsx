@@ -5,9 +5,9 @@ import recipesListTitle from 'assets/recipes-list-title.png';
 
 import Loader from 'components/Loader';
 import Text from 'components/Text';
+
 // import FoodService from 'services/FoodService';
 import { getTestRecipes } from 'utils/getTestRecipes';
-
 import { IRecipeListItem } from 'utils/types';
 
 import Filters from './components/Filters';
@@ -60,9 +60,7 @@ const RecipesListPage = () => {
 
   return (
     <div className={`container ${styles['recipes-list']}`}>
-      {isLoading ? (
-        <Loader className={styles['recipes-list__loader']} />
-      ) : (
+      {!isLoading ? (
         <>
           <div className={styles['recipes-list__header']}>
             <img className={styles['recipes-list__bg']} src={recipesListBg} alt="recipes-list-bg" />
@@ -80,6 +78,8 @@ const RecipesListPage = () => {
 
           <Paginator page={1} pages={9} onPageSwitch={() => {}} />
         </>
+      ) : (
+        <Loader className={styles['recipes-list__loader']} />
       )}
     </div>
   );

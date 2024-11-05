@@ -1,0 +1,21 @@
+@use "../../../../../styles/variables" as *;
+
+.supplies {
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: $space-xxl;
+    row-gap: $space-xxs;
+    margin-top: $space-xl;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $space-m;
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+}
