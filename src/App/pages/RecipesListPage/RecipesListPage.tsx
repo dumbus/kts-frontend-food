@@ -26,10 +26,6 @@ const RecipesListPage = () => {
     onRequest();
   }, []);
 
-  useEffect(() => {
-    console.log(recipesList);
-  }, [recipesList]);
-
   const onRequest = () => {
     const rawRecipes = getTestRecipes();
     const recipesData = foodService._transformRecipeListData(rawRecipes);

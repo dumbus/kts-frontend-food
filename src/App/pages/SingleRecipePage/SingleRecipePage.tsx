@@ -28,10 +28,6 @@ const SingleRecipePage = () => {
     onRequest();
   }, []);
 
-  useEffect(() => {
-    console.log(recipeData);
-  }, [recipeData]);
-
   const onRequest = () => {
     const rawRecipe = getTestRecipe();
     const recipeData = foodService._transformSingleRecipeData(rawRecipe);
