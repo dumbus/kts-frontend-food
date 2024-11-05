@@ -5,7 +5,7 @@ import Text from '../Text';
 
 import styles from './Card.module.scss';
 
-export type CardProps = {
+type CardProps = {
   /** Дополнительный classname */
   className?: string;
   /** URL изображения */

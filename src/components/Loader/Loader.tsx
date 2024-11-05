@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import styles from './Loader.module.scss';
 
-export type LoaderProps = {
+type LoaderProps = {
   /** Размер */
   size?: 's' | 'm' | 'l';
   /** Дополнительный класс */

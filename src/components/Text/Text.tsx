@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import styles from './Text.module.scss';
 
-export type TextProps = {
+type TextProps = {
   /** Дополнительный класс */
   className?: string;
   /** Стиль отображения */

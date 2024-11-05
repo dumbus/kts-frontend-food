@@ -5,7 +5,7 @@ import Text from 'components/Text';
 
 import styles from './SmallButton.module.scss';
 
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   /** Состояние блокировки */
   disabled?: boolean;
   /** Состояние "выбрано" */

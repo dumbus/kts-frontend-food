@@ -14,7 +14,7 @@ export type Option = {
 };
 
 /** Пропсы, которые принимает компонент Dropdown */
-export type MultiDropdownProps = {
+type MultiDropdownProps = {
   className?: string;
   /** Массив возможных вариантов для выбора */
   options: Option[];
