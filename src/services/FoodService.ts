@@ -44,7 +44,7 @@ class FoodService {
     return recipesData;
   };
 
-  getRecipeById = async (id: number): Promise<ISingleRecipe> => {
+  getRecipeById = async (id = '1'): Promise<ISingleRecipe> => {
     const requestUrl = `${this._apiBaseUrl}/${id}/information?apiKey=${this._apiKey}`;
 
     const rawData = (await this.getResource(requestUrl)) as IRawSingleRecipeData;
@@ -59,9 +59,9 @@ class FoodService {
 
       return {
         id: rawRecipe.id,
-        title: rawRecipe.title,
+        title: rawRecipe.title || 'No information about Title',
         imageSrc: rawRecipe.image,
-        cookingMinutes: rawRecipe.cookingMinutes,
+        cookingMinutes: rawRecipe.cookingMinutes || 0,
         nutrition: calories,
         ingredients: rawRecipe.nutrition.ingredients.map((ingredient) => ingredient.name),
       };
@@ -70,14 +70,14 @@ class FoodService {
 
   _transformSingleRecipeData = (rawRecipeData: IRawSingleRecipeData): ISingleRecipe => {
     const recipeData: ISingleRecipe = {
-      title: rawRecipeData.title,
+      title: rawRecipeData.title || 'No information about Title',
       image: rawRecipeData.image,
-      preparationMinutes: rawRecipeData.preparationMinutes,
-      cookingMinutes: rawRecipeData.cookingMinutes,
+      preparationMinutes: rawRecipeData.preparationMinutes || 0,
+      cookingMinutes: rawRecipeData.cookingMinutes || 0,
       totalMinutes: rawRecipeData.preparationMinutes + rawRecipeData.cookingMinutes,
-      aggregateLikes: rawRecipeData.aggregateLikes,
-      servings: rawRecipeData.servings,
-      summary: rawRecipeData.summary,
+      aggregateLikes: rawRecipeData.aggregateLikes || 0,
+      servings: rawRecipeData.servings || 0,
+      summary: rawRecipeData.summary || 'No information about Summary',
       ingredients: [],
       equipment: [],
       directions: [],

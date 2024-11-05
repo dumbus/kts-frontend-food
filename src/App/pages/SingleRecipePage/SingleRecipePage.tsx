@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import Loader from 'components/Loader';
 import FoodService from 'services/FoodService';
 
-import { getTestRecipe } from 'utils/getTestRecipe';
+// import { getTestRecipe } from 'utils/getTestRecipe';
 import { ISingleRecipe } from 'utils/types';
 
 import Characteristic from './components/Characteristic';
@@ -21,42 +22,44 @@ const SingleRecipePage = () => {
 
   // ========================= Development with mock data =========================
 
-  const foodService = new FoodService();
-
-  useEffect(() => {
-    onRequest();
-  }, []);
-
-  const onRequest = () => {
-    const rawRecipe = getTestRecipe();
-    const recipeData = foodService._transformSingleRecipeData(rawRecipe);
-
-    setRecipeData(recipeData);
-    setLoading(false);
-  };
-
-  // ========================= Get real data from API =========================
-
   // const foodService = new FoodService();
-  // const { id } = useParams();
 
   // useEffect(() => {
   //   onRequest();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);
 
   // const onRequest = () => {
-  //   foodService.getRecipeById(id).then(onRecipeLoaded).catch(onError);
-  // };
+  //   const rawRecipe = getTestRecipe();
+  //   const recipeData = foodService._transformSingleRecipeData(rawRecipe);
 
-  // const onRecipeLoaded = (recipesData: ISingleRecipe) => {
-  //   setRecipeData(recipesData);
+  //   setRecipeData(recipeData);
   //   setLoading(false);
   // };
 
-  // const onError = (error: Error) => {
-  //   // eslint-disable-next-line no-console
-  //   console.log(`Some error occured: ${error}`);
-  // };
+  // ========================= Get real data from API =========================
+
+  const foodService = new FoodService();
+  const { id } = useParams();
+
+  useEffect(() => {
+    onRequest();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const onRequest = () => {
+    foodService.getRecipeById(id).then(onRecipeLoaded).catch(onError);
+  };
+
+  const onRecipeLoaded = (recipesData: ISingleRecipe) => {
+    setRecipeData(recipesData);
+    setLoading(false);
+  };
+
+  const onError = (error: Error) => {
+    // eslint-disable-next-line no-console
+    console.log(`Some error occured: ${error}`);
+  };
 
   return (
     <div className={`container ${styles['single-recipe']}`}>

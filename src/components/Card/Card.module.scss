@@ -2,8 +2,11 @@
 
 .card {
   width: 360px;
+  height: 100%;
   border-radius: 10px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .card:hover {
@@ -23,8 +26,12 @@
 }
 
 .card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
   padding: $space-xl $space-xs;
   background-color: $color-white;
+  flex: 1;
 }
 
 .card-body {
@@ -32,6 +39,7 @@
   flex-direction: column;
   gap: $space-xxs;
   margin-bottom: $space-l;
+  flex: 1;
 }
 
 .card-footer {
@@ -39,14 +47,3 @@
   justify-content: space-between;
   align-items: center;
 }
-
-/* for screenshot tests (somehow they differ from Storybook) */
-
-// .card {
-//   width: 348px;
-// }
-
-// .card-image-container {
-//   width: 348px;
-//   height: 348px;
-// }

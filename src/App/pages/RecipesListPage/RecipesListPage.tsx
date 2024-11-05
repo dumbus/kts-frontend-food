@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Loader from 'components/Loader';
 
 import FoodService from 'services/FoodService';
-import { getTestRecipes } from 'utils/getTestRecipes';
+// import { getTestRecipes } from 'utils/getTestRecipes';
 import { IRecipeListItem } from 'utils/types';
 
 import Filters from './components/Filters';
@@ -22,37 +22,39 @@ const RecipesListPage = () => {
 
   // ========================= Development with mock data =========================
 
-  useEffect(() => {
-    onRequest();
-  }, []);
-
-  const onRequest = () => {
-    const rawRecipes = getTestRecipes();
-    const recipesData = foodService._transformRecipeListData(rawRecipes);
-
-    setRecipesList(recipesData);
-    setLoading(false);
-  };
-
-  // ========================= Get real data from API =========================
-
   // useEffect(() => {
   //   onRequest();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);
 
   // const onRequest = () => {
-  //   foodService.getRecipes().then(onRecipesLoaded).catch(onError);
-  // };
+  //   const rawRecipes = getTestRecipes();
+  //   const recipesData = foodService._transformRecipeListData(rawRecipes);
 
-  // const onRecipesLoaded = (recipesList: IRecipeListItem[]) => {
-  //   setRecipesList(recipesList);
+  //   setRecipesList(recipesData);
   //   setLoading(false);
   // };
 
-  // const onError = (error: Error) => {
-  //   // eslint-disable-next-line no-console
-  //   console.log(`Some error occured: ${error}`);
-  // };
+  // ========================= Get real data from API =========================
+
+  useEffect(() => {
+    onRequest();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const onRequest = () => {
+    foodService.getRecipes().then(onRecipesLoaded).catch(onError);
+  };
+
+  const onRecipesLoaded = (recipesList: IRecipeListItem[]) => {
+    setRecipesList(recipesList);
+    setLoading(false);
+  };
+
+  const onError = (error: Error) => {
+    // eslint-disable-next-line no-console
+    console.log(`Some error occured: ${error}`);
+  };
 
   return (
     <div className={`container ${styles['recipes-list']}`}>
