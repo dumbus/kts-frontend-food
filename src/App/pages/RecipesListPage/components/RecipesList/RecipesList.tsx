@@ -2,9 +2,9 @@ import React from 'react';
 
 import Button from 'components/Button';
 import Card from 'components/Card';
-import AlarmClockIcon from 'components/icons/AlarmClockIcon';
 
 import { IRecipeListItem } from 'utils/types';
+import AlarmClockIcon from '../AlarmClockIcon';
 
 import styles from './RecipesList.module.scss';
 

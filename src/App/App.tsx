@@ -6,8 +6,8 @@ import 'styles/styles.scss';
 const App = () => {
   return (
     <>
-      {/* <RecipesListPage /> */}
-      <SingleRecipePage id={1} />
+      <RecipesListPage />
+      {/* <SingleRecipePage id={1} /> */}
     </>
   );
 };
