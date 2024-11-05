@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Button from 'components/Button';
 import Card from 'components/Card';
@@ -31,16 +32,17 @@ const RecipesList: React.FC<RecipesListProps> = ({ recipesList }) => {
       const actionSlot = <Button>Save</Button>;
 
       return (
-        <Card
-          className={styles['recipes-list__item']}
-          key={id}
-          captionSlot={captionSlot}
-          title={title}
-          image={imageSrc}
-          subtitle={subtitle}
-          contentSlot={contentSlot}
-          actionSlot={actionSlot}
-        />
+        <Link to={`/recipes/${id}`} key={id}>
+          <Card
+            className={styles['recipes-list__item']}
+            captionSlot={captionSlot}
+            title={title}
+            image={imageSrc}
+            subtitle={subtitle}
+            contentSlot={contentSlot}
+            actionSlot={actionSlot}
+          />
+        </Link>
       );
     });
 

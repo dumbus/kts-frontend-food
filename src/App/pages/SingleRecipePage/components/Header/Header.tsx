@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Text from 'components/Text';
 import ArrowSideIcon from 'components/icons/ArrowSideIcon';
@@ -12,7 +13,9 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = ({ title }) => {
   return (
     <div className={styles['header']}>
-      <ArrowSideIcon className={styles['header__back']} side="left" color="accent" />
+      <Link to="/recipes">
+        <ArrowSideIcon className={styles['header__back']} side="left" color="accent" />
+      </Link>
 
       <Text className={styles['header__text']} tag="h1">
         {title}

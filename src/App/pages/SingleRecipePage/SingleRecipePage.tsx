@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import Loader from 'components/Loader';
 import FoodService from 'services/FoodService';
@@ -15,17 +16,13 @@ import Supplies from './components/Supplies';
 
 import styles from './SingleRecipePage.module.scss';
 
-type SingleRecipePageProps = {
-  id: number;
-};
-
-const SingleRecipePage: React.FC<SingleRecipePageProps> = ({ id }) => {
+const SingleRecipePage = () => {
   const [recipeData, setRecipeData] = useState<ISingleRecipe | null>(null);
   const [isLoading, setLoading] = useState(true);
 
-  const foodService = new FoodService();
-
   // ========================= Development with mock data =========================
+
+  const foodService = new FoodService();
 
   useEffect(() => {
     onRequest();
@@ -44,6 +41,9 @@ const SingleRecipePage: React.FC<SingleRecipePageProps> = ({ id }) => {
   };
 
   // ========================= Get real data from API =========================
+
+  // const foodService = new FoodService();
+  // const { id } = useParams();
 
   // useEffect(() => {
   //   onRequest();

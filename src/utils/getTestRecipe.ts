@@ -10,7 +10,7 @@ export const getTestRecipe = () => {
     aggregateLikes: 1234,
     servings: 6,
     summary:
-      'A classic lasagna recipe made with layers of pasta, rich meat sauce, and creamy béchamel, topped with melted cheese.',
+      'Red Lentil Soup with Chicken and Turnips might be a good recipe to expand your main course repertoire. This recipe serves 8 and costs $3.0 per serving. One serving contains <b>477 calories</b>, <b>27g of protein</b>, and <b>20g of fat</b>. It is brought to you by Pink When. 1866 people have tried and liked this recipe. It can be enjoyed any time, but it is especially good for <b>Autumn</b>. From preparation to the plate, this recipe takes approximately <b>55 minutes</b>. It is a good option if you\'re following a <b>gluten free and dairy free</b> diet. Head to the store and pick up salt and pepper, canned tomatoes, flat leaf parsley, and a few other things to make it today. Overall, this recipe earns a <b>spectacular spoonacular score of 99%</b>. If you like this recipe, you might also like recipes such as <a href="https://spoonacular.com/recipes/red-lentil-and-chicken-soup-682185">Red Lentil and Chicken Soup</a>, <a href="https://spoonacular.com/recipes/red-lentil-and-chicken-soup-1058971">Red Lentil and Chicken Soup</a>, and <a href="https://spoonacular.com/recipes/red-lentil-soup-34121">Red-Lentil Soup</a>.',
     extendedIngredients: [
       { name: 'lasagna noodles', amount: 12, unit: 'pcs' },
       { name: 'ground beef', amount: 500, unit: 'g' },
