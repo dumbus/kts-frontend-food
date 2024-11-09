@@ -75,3 +75,7 @@ export interface IPaginatedRawRecipesData {
   totalResults: number;
   results: IRawRecipeData[];
 }
+
+export interface ILocalStore {
+  destroy(): void;
+}
