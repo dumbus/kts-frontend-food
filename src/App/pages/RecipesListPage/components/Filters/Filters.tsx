@@ -17,15 +17,15 @@ const Filters = () => {
 
   const options = getFilterOptions(Categories);
 
-  const tmpInputChange = (newValue: string) => {
+  const onInputChange = (newValue: string) => {
     setInputValue(newValue);
   };
 
-  const tmpMultidropdownChange = (newValue: IMultiDropdownOption[]) => {
+  const onMultidropdownChange = (newValue: IMultiDropdownOption[]) => {
     setSelectedOptions(newValue);
   };
 
-  const tmpGetTitle = (elements: IMultiDropdownOption[]) => {
+  const getTitle = (elements: IMultiDropdownOption[]) => {
     if (elements.length > 0) {
       return elements.map((el: IMultiDropdownOption) => el.value).join(', ');
     }
@@ -36,7 +36,7 @@ const Filters = () => {
   return (
     <div className={styles['filters']}>
       <div className={styles['filters__search']}>
-        <Input value={inputValue} placeholder="Enter dishes" onChange={tmpInputChange} />
+        <Input value={inputValue} placeholder="Enter dishes" onChange={onInputChange} />
 
         <Button noText>
           <SearchIcon color="white" />
@@ -47,8 +47,8 @@ const Filters = () => {
         className={styles['filters__categories']}
         options={options}
         value={selectedOptions}
-        onChange={tmpMultidropdownChange}
-        getTitle={tmpGetTitle}
+        onChange={onMultidropdownChange}
+        getTitle={getTitle}
       />
     </div>
   );
