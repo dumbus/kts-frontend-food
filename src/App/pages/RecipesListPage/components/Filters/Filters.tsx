@@ -2,32 +2,32 @@ import { useState } from 'react';
 
 import Button from 'components/Button';
 import Input from 'components/Input';
-import MultiDropdown, { Option } from 'components/MultiDropdown';
+import MultiDropdown from 'components/MultiDropdown';
 import SearchIcon from 'components/icons/SearchIcon';
+
+import { IMultiDropdownOption } from 'types/entities';
+import { Categories } from 'utils/categories';
+import { getFilterOptions } from 'utils/getFilterOptions';
 
 import styles from './Filters.module.scss';
 
-const tmpOptions: Option[] = [
-  { key: 'key1', value: 'option1' },
-  { key: 'key2', value: 'option2' },
-  { key: 'key3', value: 'option3' },
-];
-
 const Filters = () => {
-  const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<IMultiDropdownOption[]>([]);
   const [inputValue, setInputValue] = useState('');
+
+  const options = getFilterOptions(Categories);
 
   const tmpInputChange = (newValue: string) => {
     setInputValue(newValue);
   };
 
-  const tmpMultidropdownChange = (newValue: Option[]) => {
+  const tmpMultidropdownChange = (newValue: IMultiDropdownOption[]) => {
     setSelectedOptions(newValue);
   };
 
-  const tmpGetTitle = (elements: Option[]) => {
+  const tmpGetTitle = (elements: IMultiDropdownOption[]) => {
     if (elements.length > 0) {
-      return elements.map((el: Option) => el.value).join(', ');
+      return elements.map((el: IMultiDropdownOption) => el.value).join(', ');
     }
 
     return 'Categories';
@@ -45,7 +45,7 @@ const Filters = () => {
 
       <MultiDropdown
         className={styles['filters__categories']}
-        options={tmpOptions}
+        options={options}
         value={selectedOptions}
         onChange={tmpMultidropdownChange}
         getTitle={tmpGetTitle}

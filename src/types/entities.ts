@@ -81,3 +81,8 @@ export interface ILocalStore {
 }
 
 export type DataType = 'mock' | 'api';
+
+export interface IMultiDropdownOption {
+  key: string;
+  value: string;
+}
