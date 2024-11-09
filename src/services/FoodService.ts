@@ -57,7 +57,7 @@ class FoodService {
     return recipesData;
   };
 
-  getRecipeById = async (id = '1'): Promise<ISingleRecipe> => {
+  getRecipeById = async (id: string): Promise<ISingleRecipe> => {
     const rawData = await this.getResource<IRawSingleRecipeData>({
       url: `/${id}/information`,
     });
