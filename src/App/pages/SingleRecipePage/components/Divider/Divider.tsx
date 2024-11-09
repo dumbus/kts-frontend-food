@@ -8,10 +8,10 @@ type DividerProps = {
 };
 
 const Divider: React.FC<DividerProps> = ({ className = '' }) => {
-  const rootClassName = classNames(styles['divider'], className);
+  const rootClass = classNames(styles['divider'], className);
 
   return (
-    <div className={rootClassName}>
+    <div className={rootClass}>
       <div className={styles['divider__circle']} />
       <div className={styles['divider__line']} />
     </div>

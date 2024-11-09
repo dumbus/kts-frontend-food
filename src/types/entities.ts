@@ -68,3 +68,10 @@ interface INutrient {
   name: string;
   amount: number;
 }
+
+export interface IPaginatedRawRecipesData {
+  number: number;
+  offset: number;
+  totalResults: number;
+  results: IRawRecipeData[];
+}

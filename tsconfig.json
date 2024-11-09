@@ -27,7 +27,9 @@
       "assets/*": ["assets/*"],
       "utils/*": ["utils/*"],
       "services/*": ["services/*"],
-      "styles/*": ["styles/*"]
+      "styles/*": ["styles/*"],
+      "config/*": ["config/*"],
+      "types/*": ["types/*"]
     }
   },
   "include": ["src", ".eslintrx.cjs"],

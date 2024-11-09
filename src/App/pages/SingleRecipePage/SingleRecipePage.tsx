@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import Loader from 'components/Loader';
 import FoodService from 'services/FoodService';
 
+import { ISingleRecipe } from 'types/entities';
 // import { getTestRecipe } from 'utils/getTestRecipe';
-import { ISingleRecipe } from 'utils/types';
 
 import Characteristic from './components/Characteristic';
 import Directions from './components/Directions';
@@ -58,7 +58,7 @@ const SingleRecipePage = () => {
 
   const onError = (error: Error) => {
     // eslint-disable-next-line no-console
-    console.log(`Some error occured: ${error}`);
+    console.log('Some error occured:', error);
   };
 
   return (

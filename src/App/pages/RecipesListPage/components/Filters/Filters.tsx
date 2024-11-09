@@ -15,8 +15,13 @@ const tmpOptions: Option[] = [
 
 const Filters = () => {
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+  const [inputValue, setInputValue] = useState('');
 
-  const tmpOnChange = (newValue: Option[]) => {
+  const tmpInputChange = (newValue: string) => {
+    setInputValue(newValue);
+  };
+
+  const tmpMultidropdownChange = (newValue: Option[]) => {
     setSelectedOptions(newValue);
   };
 
@@ -31,7 +36,7 @@ const Filters = () => {
   return (
     <div className={styles['filters']}>
       <div className={styles['filters__search']}>
-        <Input value="" placeholder="Enter dishes" onChange={() => {}} />
+        <Input value={inputValue} placeholder="Enter dishes" onChange={tmpInputChange} />
 
         <Button noText>
           <SearchIcon color="white" />
@@ -42,7 +47,7 @@ const Filters = () => {
         className={styles['filters__categories']}
         options={tmpOptions}
         value={selectedOptions}
-        onChange={tmpOnChange}
+        onChange={tmpMultidropdownChange}
         getTitle={tmpGetTitle}
       />
     </div>

@@ -1,10 +1,11 @@
+import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 
 import Loader from 'components/Loader';
 
 import FoodService from 'services/FoodService';
+import { IRecipeListItem } from 'types/entities';
 // import { getTestRecipes } from 'utils/getTestRecipes';
-import { IRecipeListItem } from 'utils/types';
 
 import Filters from './components/Filters';
 import Header from './components/Header';
@@ -53,11 +54,13 @@ const RecipesListPage = () => {
 
   const onError = (error: Error) => {
     // eslint-disable-next-line no-console
-    console.log(`Some error occured: ${error}`);
+    console.log(error);
   };
 
+  const rootClass = classNames('container', styles['recipes-list']);
+
   return (
-    <div className={`container ${styles['recipes-list']}`}>
+    <div className={rootClass}>
       {!isLoading ? (
         <>
           <Header />

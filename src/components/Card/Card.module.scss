@@ -7,10 +7,10 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-}
 
-.card:hover {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  }
 }
 
 .card-image-container {

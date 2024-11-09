@@ -1,5 +1,7 @@
 import classNames from 'classnames';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
+
+import useClickOutside from 'hooks/useClickOutside';
 
 import Input from '../Input';
 import ArrowDownIcon from '../icons/ArrowDownIcon';
@@ -33,18 +35,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ className, options, value
   const [filter, setFilter] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [dropdownRef]);
+  useClickOutside(dropdownRef, () => setIsOpen(false));
 
   const handleInputFocus = () => {
     setIsOpen(true);

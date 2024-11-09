@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import * as React from 'react';
 
 import styles from './Text.module.scss';
@@ -20,15 +21,11 @@ type TextProps = {
 };
 
 const Text: React.FC<TextProps> = ({ className = '', view, tag: Tag = 'p', weight, children, color, maxLines }) => {
-  const classes = [
-    styles['text'],
-    view ? styles[`text-${view}`] : '',
-    weight ? styles[`text-weight-${weight}`] : '',
-    color ? styles[`text-color-${color}`] : '',
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  const textClasses = classNames(className, styles['text'], {
+    [styles[`text-${view}`]]: view,
+    [styles[`text-weight-${weight}`]]: weight,
+    [styles[`text-color-${color}`]]: color,
+  });
 
   const style: React.CSSProperties = maxLines
     ? {
@@ -40,7 +37,7 @@ const Text: React.FC<TextProps> = ({ className = '', view, tag: Tag = 'p', weigh
     : {};
 
   return (
-    <Tag className={classes} style={style}>
+    <Tag className={textClasses} style={style}>
       {children}
     </Tag>
   );

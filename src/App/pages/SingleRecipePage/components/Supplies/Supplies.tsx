@@ -1,6 +1,9 @@
 import React from 'react';
 
 import Text from 'components/Text';
+
+import { firstLetterToUpperCase } from 'utils/firstLetterToUpperCase';
+
 import DishIcon from '../DishIcon';
 import LadleIcon from '../LadleIcon';
 
@@ -32,7 +35,7 @@ const Supplies: React.FC<SuppliesProps> = ({ type, items }) => {
   return (
     <div className={styles['supplies']}>
       <Text tag="h2" view="p-20" maxLines={1}>
-        {type.charAt(0).toUpperCase() + type.slice(1)}
+        {firstLetterToUpperCase(type)}
       </Text>
 
       <div className={styles['supplies__list']}>{list}</div>

@@ -10,6 +10,9 @@ export default defineConfig({
       utils: '/src/utils',
       services: '/src/services',
       styles: '/src/styles',
+      config: '/src/config',
+      hooks: '/src/hooks',
+      types: '/src/types',
     },
   },
 });

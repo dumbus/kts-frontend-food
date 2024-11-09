@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import Button from 'components/Button';
 import Card from 'components/Card';
 
-import { IRecipeListItem } from 'utils/types';
+import { ROUTES } from 'config/routes';
+import { IRecipeListItem } from 'types/entities';
 import AlarmClockIcon from '../AlarmClockIcon';
 
 import styles from './RecipesList.module.scss';
@@ -21,7 +22,7 @@ const RecipesList: React.FC<RecipesListProps> = ({ recipesList }) => {
       const captionSlot = (
         <div className={styles['recipes-list__caption-slot']}>
           <AlarmClockIcon className={styles['recipes-list__alarm-clock']} />
-          {`${cookingMinutes} minutes`}
+          {cookingMinutes} minutes
         </div>
       );
 
@@ -32,7 +33,7 @@ const RecipesList: React.FC<RecipesListProps> = ({ recipesList }) => {
       const actionSlot = <Button>Save</Button>;
 
       return (
-        <Link to={`/recipes/${id}`} key={id}>
+        <Link to={ROUTES.recipesDetail(id)} key={id}>
           <Card
             className={styles['recipes-list__item']}
             captionSlot={captionSlot}

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useState, useEffect, forwardRef } from 'react';
+import { forwardRef } from 'react';
 
 import styles from './Input.module.scss';
 
@@ -14,14 +14,7 @@ type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' |
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ value, onChange, afterSlot, type = 'text', className, ...props }, ref) => {
-    const [inputValue, setInputValue] = useState(value);
-
-    useEffect(() => {
-      setInputValue(value);
-    }, [value]);
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setInputValue(e.target.value);
       onChange(e.target.value);
     };
 
@@ -29,14 +22,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div className={rootClass}>
-        <input
-          className={styles['input']}
-          type={type}
-          value={inputValue}
-          onChange={handleChange}
-          ref={ref}
-          {...props}
-        />
+        <input className={styles['input']} type={type} value={value} onChange={handleChange} ref={ref} {...props} />
         {afterSlot && <div className={styles['after-slot']}>{afterSlot}</div>}
       </div>
     );

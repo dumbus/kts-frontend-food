@@ -1,43 +1,56 @@
-import axios from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import { getClosestFraction } from 'utils/getClosestFraction';
 import {
+  IPaginatedRawRecipesData,
   IRecipeListItem,
   ISingleRecipe,
   IRawRecipeData,
   IRawSingleRecipeData,
   IIngredient,
   IDirection,
-} from 'utils/types';
+} from 'types/entities';
 
-type RawData = {
-  number: number;
-  offset: number;
-  totalResults: number;
-  results: IRawRecipeData[];
-};
+import { getClosestFraction } from 'utils/getClosestFraction';
 
 class FoodService {
-  _apiBaseUrl = 'https://api.spoonacular.com/recipes';
-  _apiKey = '727688aee1234493b060d3fad825adb8';
+  private _apiClient: AxiosInstance;
 
-  getResource = async (url: string): Promise<RawData | IRawSingleRecipeData> => {
-    const response = await axios({
-      method: 'get',
-      url,
+  constructor() {
+    this._apiClient = axios.create({
+      baseURL: 'https://api.spoonacular.com/recipes',
+      params: {
+        apiKey: import.meta.env.VITE_API_KEY,
+      },
     });
+  }
 
-    if (response.status !== 200) {
-      throw new Error(`Could not fetch ${url}, status: ${response.status}`);
+  getResource = async <D>(config: AxiosRequestConfig): Promise<D> => {
+    try {
+      const response = await this._apiClient({
+        ...config,
+        method: 'get',
+      });
+
+      if (response.status !== 200) {
+        throw new Error(`Could not fetch ${config.url}, status: ${response.status}`);
+      }
+
+      return response.data;
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+      throw new Error(`Error fetching data from ${config.url}: ${errorMessage}`);
     }
-
-    return response.data;
   };
 
   getRecipes = async (): Promise<IRecipeListItem[]> => {
-    const requestUrl = `${this._apiBaseUrl}/complexSearch?addRecipeNutrition=true&instructionsRequired=true&number=9&apiKey=${this._apiKey}`;
-
-    const rawData = (await this.getResource(requestUrl)) as RawData;
+    const rawData = await this.getResource<IPaginatedRawRecipesData>({
+      url: '/complexSearch',
+      params: {
+        addRecipeNutrition: true,
+        instructionsRequired: true,
+        number: 9,
+      },
+    });
     const rawRecipesData = rawData.results;
     const recipesData = this._transformRecipeListData(rawRecipesData);
 
@@ -45,9 +58,9 @@ class FoodService {
   };
 
   getRecipeById = async (id = '1'): Promise<ISingleRecipe> => {
-    const requestUrl = `${this._apiBaseUrl}/${id}/information?apiKey=${this._apiKey}`;
-
-    const rawData = (await this.getResource(requestUrl)) as IRawSingleRecipeData;
+    const rawData = await this.getResource<IRawSingleRecipeData>({
+      url: `/${id}/information`,
+    });
     const recipeData = this._transformSingleRecipeData(rawData);
 
     return recipeData;

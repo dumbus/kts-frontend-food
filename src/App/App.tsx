@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 
+import { ROUTES } from 'config/routes';
+
 import Header from './pages/Header';
 import RecipesListPage from './pages/RecipesListPage';
 import SingleRecipePage from './pages/SingleRecipePage';
@@ -26,12 +28,11 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main />}>
+        <Route path={ROUTES.recipes()} element={<Main />}>
           <Route index element={<RecipesListPage />} />
-          <Route path="recipes" element={<RecipesListPage />} />
-          <Route path="recipes/:id" element={<SingleRecipePage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path=":id" element={<SingleRecipePage />} />
         </Route>
+        <Route path="*" element={<Navigate to={ROUTES.recipes()} replace />} />
       </Routes>
     </BrowserRouter>
   );
