@@ -1,11 +1,12 @@
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
+import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 
 import Loader from 'components/Loader';
 
-import FoodService from 'services/FoodService';
-import { IRecipeListItem } from 'types/entities';
-// import { getTestRecipes } from 'utils/getTestRecipes';
+import useLocalStore from 'hooks/useLocalStore';
+import RecipesListStore from 'store/RecipesListStore';
+import { Meta } from 'utils/meta';
 
 import Filters from './components/Filters';
 import Header from './components/Header';
@@ -16,65 +17,36 @@ import Subtitle from './components/Subtitle';
 import styles from './RecipesListPage.module.scss';
 
 const RecipesListPage = () => {
-  const [recipesList, setRecipesList] = useState<IRecipeListItem[]>([]);
-  const [isLoading, setLoading] = useState(true);
-
-  const foodService = new FoodService();
-
-  // ========================= Development with mock data =========================
-
-  // useEffect(() => {
-  //   onRequest();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
-  // const onRequest = () => {
-  //   const rawRecipes = getTestRecipes();
-  //   const recipesData = foodService._transformRecipeListData(rawRecipes);
-
-  //   setRecipesList(recipesData);
-  //   setLoading(false);
-  // };
-
-  // ========================= Get real data from API =========================
+  const recipesListStore = useLocalStore(() => new RecipesListStore());
 
   useEffect(() => {
-    onRequest();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const onRequest = () => {
-    foodService.getRecipes().then(onRecipesLoaded).catch(onError);
-  };
-
-  const onRecipesLoaded = (recipesList: IRecipeListItem[]) => {
-    setRecipesList(recipesList);
-    setLoading(false);
-  };
-
-  const onError = (error: Error) => {
-    // eslint-disable-next-line no-console
-    console.log(error);
-  };
+    // Логика по переключению режима получения данных (моковые или реальные из API) перенесена в агрумент ('mock' | 'api')
+    recipesListStore.getRecipesListData('mock');
+  }, [recipesListStore]);
 
   const rootClass = classNames('container', styles['recipes-list']);
 
   return (
     <div className={rootClass}>
-      {!isLoading ? (
+      {recipesListStore.meta === Meta.loading && <Loader className={styles['recipes-list__loader']} />}
+
+      {/* Временное решение, пока нет компонента Error: */}
+      {recipesListStore.meta === Meta.error && (
+        <>Произошла ошибка: {recipesListStore.error?.message || 'Неизвестная ошибка'}</>
+      )}
+
+      {recipesListStore.meta === Meta.success && (
         <>
           <Header />
           <Subtitle />
           <Filters />
 
-          <RecipesList recipesList={recipesList} />
+          <RecipesList recipesList={recipesListStore.list} />
           <Paginator page={1} pages={9} onPageSwitch={() => {}} />
         </>
-      ) : (
-        <Loader className={styles['recipes-list__loader']} />
       )}
     </div>
   );
 };
 
-export default RecipesListPage;
+export default observer(RecipesListPage);

@@ -29,7 +29,8 @@
       "services/*": ["services/*"],
       "styles/*": ["styles/*"],
       "config/*": ["config/*"],
-      "types/*": ["types/*"]
+      "types/*": ["types/*"],
+      "store/*": ["store/*"]
     }
   },
   "include": ["src", ".eslintrx.cjs"],

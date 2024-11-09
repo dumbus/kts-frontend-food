@@ -79,3 +79,5 @@ export interface IPaginatedRawRecipesData {
 export interface ILocalStore {
   destroy(): void;
 }
+
+export type DataType = 'mock' | 'api';
