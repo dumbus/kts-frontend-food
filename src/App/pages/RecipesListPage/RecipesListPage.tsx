@@ -1,11 +1,13 @@
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Loader from 'components/Loader';
 
 import useLocalStore from 'hooks/useLocalStore';
 import RecipesListStore from 'store/RecipesListStore';
+import rootStore from 'store/RootStore';
 import { Meta } from 'utils/meta';
 
 import Filters from './components/Filters';
@@ -19,10 +21,15 @@ import styles from './RecipesListPage.module.scss';
 const RecipesListPage = () => {
   const recipesListStore = useLocalStore(() => new RecipesListStore());
 
+  const location = useLocation();
+
   useEffect(() => {
-    // Логика по переключению режима получения данных (моковые или реальные из API) перенесена в агрумент ('mock' | 'api')
-    recipesListStore.getRecipesListData('mock');
-  }, [recipesListStore]);
+    const params = new URLSearchParams(location.search);
+    const searchParam = params.get('search') || '';
+    rootStore.query.setSearch(searchParam);
+
+    recipesListStore.getRecipesListData();
+  }, [location.search, recipesListStore]);
 
   const rootClass = classNames('container', styles['recipes-list']);
 

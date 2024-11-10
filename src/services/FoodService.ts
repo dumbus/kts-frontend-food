@@ -42,13 +42,14 @@ class FoodService {
     }
   };
 
-  getRecipes = async (): Promise<IRecipeListItem[]> => {
+  getRecipes = async (search = ''): Promise<IRecipeListItem[]> => {
     const rawData = await this.getResource<IPaginatedRawRecipesData>({
       url: '/complexSearch',
       params: {
         addRecipeNutrition: true,
         instructionsRequired: true,
         number: 9,
+        query: search,
       },
     });
     const rawRecipesData = rawData.results;

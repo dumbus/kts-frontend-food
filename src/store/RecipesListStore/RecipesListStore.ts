@@ -2,6 +2,8 @@ import { makeObservable, observable, action, computed, runInAction } from 'mobx'
 
 import FoodService from 'services/FoodService';
 
+import rootStore from 'store/RootStore';
+
 import { IRecipeListItem, ILocalStore, DataType } from 'types/entities';
 import { getTestRecipes } from 'utils/getTestRecipes';
 
@@ -15,6 +17,9 @@ export default class RecipesListStore implements ILocalStore {
   private _list: IRecipeListItem[] = [];
   private _meta: Meta = Meta.loading;
   private _error: Error | null = null;
+
+  // Логика по переключению режима получения данных ('mock' | 'api')
+  private _dataType: DataType = 'mock';
 
   constructor() {
     makeObservable<RecipesListStore, PrivateFields>(this, {
@@ -41,11 +46,15 @@ export default class RecipesListStore implements ILocalStore {
     return this._error;
   }
 
-  async getRecipesListData(dataType: DataType) {
+  get dataType(): DataType {
+    return this._dataType;
+  }
+
+  async getRecipesListData() {
     this._meta = Meta.loading;
     this._list = [];
 
-    if (dataType === 'mock') {
+    if (this._dataType === 'mock') {
       const rawRecipeData = getTestRecipes();
 
       const recipes = this._foodService._transformRecipeListData(rawRecipeData);
@@ -53,9 +62,9 @@ export default class RecipesListStore implements ILocalStore {
       this._list = recipes;
     }
 
-    if (dataType === 'api') {
+    if (this._dataType === 'api') {
       try {
-        const recipes = await this._foodService.getRecipes();
+        const recipes = await this._foodService.getRecipes(rootStore.query.search);
 
         runInAction(() => {
           this._meta = Meta.success;
