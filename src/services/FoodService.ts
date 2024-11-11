@@ -4,6 +4,7 @@ import { IPaginatedRawRecipesData, IRawRecipeData, IRawSingleRecipeData } from '
 import { IRecipeListData, IRecipeListItem, ISingleRecipe, IIngredient, IDirection } from 'types/entities';
 
 import { getClosestFraction } from 'utils/getClosestFraction';
+import { getOffset } from 'utils/getOffset';
 
 class FoodService {
   private _apiClient: AxiosInstance;
@@ -35,13 +36,14 @@ class FoodService {
     }
   };
 
-  getRecipes = async (search = ''): Promise<IRecipeListData> => {
+  getRecipes = async (search = '', page = 1): Promise<IRecipeListData> => {
     const rawData = await this.getResource<IPaginatedRawRecipesData>({
       url: '/complexSearch',
       params: {
         addRecipeNutrition: true,
         instructionsRequired: true,
         number: 9,
+        offset: getOffset(page),
         query: search,
       },
     });

@@ -2,6 +2,9 @@ import React from 'react';
 
 import ArrowSideIcon from 'components/icons/ArrowSideIcon';
 
+import useQueryParams from 'hooks/useQueryParams';
+import rootStore from 'store/RootStore';
+
 import SmallButton from '../SmallButton';
 
 import styles from './Paginator.module.scss';
@@ -9,10 +12,18 @@ import styles from './Paginator.module.scss';
 interface PaginatorProps {
   page: number;
   pages: number;
-  onPageSwitch: (newPage: number) => void;
 }
 
-const Paginator: React.FC<PaginatorProps> = ({ page, pages, onPageSwitch }) => {
+const Paginator: React.FC<PaginatorProps> = ({ page, pages }) => {
+  const updateUrl = useQueryParams();
+
+  const onPageSwitch = (newPage: number) => {
+    const stringifiedNewPage = String(newPage);
+
+    rootStore.query.setPage(newPage);
+    updateUrl('page', stringifiedNewPage, true);
+  };
+
   const renderCenterButtons = (page: number, pages: number) => {
     const buttons = [];
     let first, last;

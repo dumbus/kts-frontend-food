@@ -26,7 +26,10 @@ const RecipesListPage = () => {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const searchParam = params.get('search') || '';
+    const pageParam = parseInt(params.get('page') || '1', 10);
+
     rootStore.query.setSearch(searchParam);
+    rootStore.query.setPage(pageParam);
 
     recipesListStore.getRecipesListData();
   }, [location.search, recipesListStore]);
@@ -49,7 +52,7 @@ const RecipesListPage = () => {
           <Filters />
 
           <RecipesList recipesList={recipesListStore.list} />
-          <Paginator page={1} pages={9} onPageSwitch={() => {}} />
+          <Paginator page={rootStore.query.page} pages={recipesListStore.pages} />
         </>
       )}
     </div>

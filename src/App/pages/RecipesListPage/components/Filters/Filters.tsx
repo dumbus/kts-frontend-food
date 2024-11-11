@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import Button from 'components/Button';
 import Input from 'components/Input';
@@ -8,6 +7,7 @@ import MultiDropdown from 'components/MultiDropdown';
 import SearchIcon from 'components/icons/SearchIcon';
 
 import useLocalStore from 'hooks/useLocalStore';
+import useQueryParams from 'hooks/useQueryParams';
 import RecipesListStore from 'store/RecipesListStore';
 import rootStore from 'store/RootStore';
 
@@ -21,13 +21,13 @@ const Filters = () => {
   const recipesListStore = useLocalStore(() => new RecipesListStore());
   const [selectedOptions, setSelectedOptions] = useState<IMultiDropdownOption[]>([]);
 
-  const navigate = useNavigate();
+  const updateUrl = useQueryParams();
 
   const searchValue = rootStore.query.search;
 
   const onInputChange = (newValue: string) => {
     rootStore.query.setSearch(newValue);
-    updateUrl(newValue);
+    updateUrl('search', newValue, false);
   };
 
   const onMultidropdownChange = (newValue: IMultiDropdownOption[]) => {
@@ -37,7 +37,7 @@ const Filters = () => {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    updateUrl(searchValue, true);
+    updateUrl('search', searchValue, true);
     recipesListStore.getRecipesListData();
   };
 
@@ -47,25 +47,6 @@ const Filters = () => {
     }
 
     return 'Categories';
-  };
-
-  const updateUrl = (searchValue: string, needReload = false) => {
-    const params = new URLSearchParams(location.search);
-
-    if (searchValue) {
-      params.set('search', searchValue);
-    } else {
-      params.delete('search');
-    }
-
-    if (needReload) {
-      navigate({ search: params.toString() });
-    } else {
-      window.history.replaceState(null, '', `${location.pathname}?${params.toString()}`);
-
-      // Этот подход не работает, как бы я не старался...
-      // navigate({ search: params.toString() }, { replace: true });
-    }
   };
 
   const options = getFilterOptions(Categories);
