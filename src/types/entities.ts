@@ -1,3 +1,8 @@
+export interface IRecipeListData {
+  list: IRecipeListItem[];
+  totalResults: number;
+}
+
 export interface IRecipeListItem {
   id: number;
   title: string;
@@ -21,31 +26,9 @@ export interface ISingleRecipe {
   directions: IDirection[];
 }
 
-export interface IRawRecipeData {
-  id: number;
-  title: string;
-  image: string;
-  cookingMinutes: number;
-  nutrition: INutrition;
-}
-
-export interface IRawSingleRecipeData {
-  id: string;
-  title: string;
-  image: string;
-  preparationMinutes: number;
-  cookingMinutes: number;
-  aggregateLikes: number;
-  servings: number;
-  summary: string;
-  extendedIngredients: IIngredient[];
-  analyzedInstructions: Array<{
-    steps: Array<{
-      number: number;
-      step: string;
-      equipment: Array<{ name: string }>;
-    }>;
-  }>;
+export interface IDirection {
+  number: number;
+  step: string;
 }
 
 export interface IIngredient {
@@ -54,26 +37,14 @@ export interface IIngredient {
   unit: string;
 }
 
-export interface IDirection {
-  number: number;
-  step: string;
-}
-
-interface INutrition {
+export interface INutrition {
   nutrients: INutrient[];
   ingredients: IIngredient[];
 }
 
-interface INutrient {
+export interface INutrient {
   name: string;
   amount: number;
-}
-
-export interface IPaginatedRawRecipesData {
-  number: number;
-  offset: number;
-  totalResults: number;
-  results: IRawRecipeData[];
 }
 
 export interface ILocalStore {

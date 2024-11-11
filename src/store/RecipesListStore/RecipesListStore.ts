@@ -57,18 +57,18 @@ export default class RecipesListStore implements ILocalStore {
     if (this._dataType === 'mock') {
       const rawRecipeData = getTestRecipes();
 
-      const recipes = this._foodService._transformRecipeListData(rawRecipeData);
+      const recipesData = this._foodService._transfrormPaginatedRecipesData(rawRecipeData);
       this._meta = Meta.success;
-      this._list = recipes;
+      this._list = recipesData.list;
     }
 
     if (this._dataType === 'api') {
       try {
-        const recipes = await this._foodService.getRecipes(rootStore.query.search);
+        const recipesData = await this._foodService.getRecipes(rootStore.query.search);
 
         runInAction(() => {
           this._meta = Meta.success;
-          this._list = recipes;
+          this._list = recipesData.list;
         });
       } catch (error) {
         this._meta = Meta.error;

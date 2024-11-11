@@ -1,14 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import {
-  IPaginatedRawRecipesData,
-  IRecipeListItem,
-  ISingleRecipe,
-  IRawRecipeData,
-  IRawSingleRecipeData,
-  IIngredient,
-  IDirection,
-} from 'types/entities';
+import { IPaginatedRawRecipesData, IRawRecipeData, IRawSingleRecipeData } from 'types/api';
+import { IRecipeListData, IRecipeListItem, ISingleRecipe, IIngredient, IDirection } from 'types/entities';
 
 import { getClosestFraction } from 'utils/getClosestFraction';
 
@@ -42,7 +35,7 @@ class FoodService {
     }
   };
 
-  getRecipes = async (search = ''): Promise<IRecipeListItem[]> => {
+  getRecipes = async (search = ''): Promise<IRecipeListData> => {
     const rawData = await this.getResource<IPaginatedRawRecipesData>({
       url: '/complexSearch',
       params: {
@@ -52,10 +45,9 @@ class FoodService {
         query: search,
       },
     });
-    const rawRecipesData = rawData.results;
-    const recipesData = this._transformRecipeListData(rawRecipesData);
+    const paginatedData = this._transfrormPaginatedRecipesData(rawData);
 
-    return recipesData;
+    return paginatedData;
   };
 
   getRecipeById = async (id: string): Promise<ISingleRecipe> => {
@@ -65,6 +57,18 @@ class FoodService {
     const recipeData = this._transformSingleRecipeData(rawData);
 
     return recipeData;
+  };
+
+  _transfrormPaginatedRecipesData = (rawPaginatedData: IPaginatedRawRecipesData): IRecipeListData => {
+    const data: IRecipeListData = {
+      list: [],
+      totalResults: rawPaginatedData.totalResults,
+    };
+    const rawRecipesData = rawPaginatedData.results;
+
+    data.list = this._transformRecipeListData(rawRecipesData);
+
+    return data;
   };
 
   _transformRecipeListData = (rawRecipesData: IRawRecipeData[]): IRecipeListItem[] => {
