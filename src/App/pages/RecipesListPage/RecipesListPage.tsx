@@ -9,6 +9,7 @@ import useLocalStore from 'hooks/useLocalStore';
 import RecipesListStore from 'store/RecipesListStore';
 import rootStore from 'store/RootStore';
 import { Meta } from 'utils/meta';
+import { parseUrlParams } from 'utils/parseUrlParams';
 
 import Filters from './components/Filters';
 import Header from './components/Header';
@@ -25,11 +26,9 @@ const RecipesListPage = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const searchParam = params.get('search') || '';
-    const pageParam = parseInt(params.get('page') || '1', 10);
+    const newParams = parseUrlParams(params);
 
-    rootStore.query.setSearch(searchParam);
-    rootStore.query.setPage(pageParam);
+    rootStore.query.setParams(newParams);
 
     recipesListStore.getRecipesListData();
   }, [location.search, recipesListStore]);
@@ -52,7 +51,7 @@ const RecipesListPage = () => {
           <Filters />
 
           <RecipesList recipesList={recipesListStore.list} />
-          <Paginator page={rootStore.query.page} pages={recipesListStore.pages} />
+          <Paginator pages={recipesListStore.pages} />
         </>
       )}
     </div>

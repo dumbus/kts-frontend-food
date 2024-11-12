@@ -1,4 +1,4 @@
-import { makeObservable, observable, action, computed, runInAction, IReactionDisposer, reaction } from 'mobx';
+import { makeObservable, observable, action, computed, runInAction } from 'mobx';
 
 import FoodService from 'services/FoodService';
 
@@ -9,6 +9,7 @@ import { getPages } from 'utils/getPages';
 import { getTestRecipes } from 'utils/getTestRecipes';
 
 import { Meta } from 'utils/meta';
+import { stringifyFilterOptions } from 'utils/stringifyFilterOptions';
 
 type PrivateFields = '_list' | '_meta' | '_error' | '_pages';
 
@@ -21,7 +22,7 @@ export default class RecipesListStore implements ILocalStore {
   private _pages: number = 1;
 
   // Логика по переключению режима получения данных ('mock' | 'api')
-  private _dataType: DataType = 'mock';
+  private _dataType: DataType = 'api';
 
   constructor() {
     makeObservable<RecipesListStore, PrivateFields>(this, {
@@ -74,9 +75,12 @@ export default class RecipesListStore implements ILocalStore {
 
     if (this._dataType === 'api') {
       try {
-        const { search, page } = rootStore.query;
+        const { name, page, type } = rootStore.query;
 
-        const recipesData = await this._foodService.getRecipes(search, page);
+        const pageNumber = Number(page);
+        const stringifiedType = stringifyFilterOptions(type);
+
+        const recipesData = await this._foodService.getRecipes(name, pageNumber, stringifiedType);
 
         runInAction(() => {
           this._meta = Meta.success;
@@ -90,17 +94,9 @@ export default class RecipesListStore implements ILocalStore {
     }
   }
 
-  private readonly _pageReaction: IReactionDisposer = reaction(
-    () => rootStore.query.page,
-    () => {
-      this.getRecipesListData();
-    },
-  );
-
   destroy(): void {
     this._list = [];
     this._meta = Meta.initial;
     this._error = null;
-    this._pageReaction();
   }
 }

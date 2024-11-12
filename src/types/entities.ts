@@ -56,4 +56,10 @@ export interface IMultiDropdownOption {
   value: string;
 }
 
+export interface IQueryParams {
+  name?: string;
+  type?: IMultiDropdownOption[];
+  page?: number;
+}
+
 export type DataType = 'mock' | 'api';

@@ -36,7 +36,7 @@ class FoodService {
     }
   };
 
-  getRecipes = async (search = '', page = 1): Promise<IRecipeListData> => {
+  getRecipes = async (search = '', page = 1, type = ''): Promise<IRecipeListData> => {
     const rawData = await this.getResource<IPaginatedRawRecipesData>({
       url: '/complexSearch',
       params: {
@@ -45,6 +45,7 @@ class FoodService {
         number: 9,
         offset: getOffset(page),
         query: search,
+        type: type,
       },
     });
     const paginatedData = this._transfrormPaginatedRecipesData(rawData);

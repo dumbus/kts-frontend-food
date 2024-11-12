@@ -16,6 +16,9 @@ export default class SingleRecipeStore implements ILocalStore {
   private _meta: Meta = Meta.loading;
   private _error: Error | null = null;
 
+  // Логика по переключению режима получения данных ('mock' | 'api')
+  private _dataType: DataType = 'api';
+
   constructor() {
     makeObservable<SingleRecipeStore, PrivateFields>(this, {
       _recipe: observable.ref,
@@ -41,11 +44,11 @@ export default class SingleRecipeStore implements ILocalStore {
     return this._error;
   }
 
-  async getRecipesListData(dataType: DataType, id: string) {
+  async getRecipesListData(id: string) {
     this._meta = Meta.loading;
     this._recipe = null;
 
-    if (dataType === 'mock') {
+    if (this._dataType === 'mock') {
       const rawRecipeData = getTestRecipe();
 
       const recipeData = this._foodService._transformSingleRecipeData(rawRecipeData);
@@ -53,7 +56,7 @@ export default class SingleRecipeStore implements ILocalStore {
       this._recipe = recipeData;
     }
 
-    if (dataType === 'api') {
+    if (this._dataType === 'api') {
       try {
         const recipeData = await this._foodService.getRecipeById(id);
 

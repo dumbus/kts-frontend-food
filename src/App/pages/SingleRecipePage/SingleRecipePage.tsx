@@ -24,7 +24,7 @@ const SingleRecipePage = () => {
   const { id = '' } = useParams();
 
   useEffect(() => {
-    singleRecipeStore.getRecipesListData('mock', id);
+    singleRecipeStore.getRecipesListData(id);
   }, [singleRecipeStore, id]);
 
   const rootClass = classNames('container', styles['single-recipe']);
