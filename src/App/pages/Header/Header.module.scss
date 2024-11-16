@@ -1,0 +1,11 @@
+@use "../../../styles/variables" as *;
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 $container-padding;
+
+  background-color: $color-white;
+}

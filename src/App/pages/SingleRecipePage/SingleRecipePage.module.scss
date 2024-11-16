@@ -1,0 +1,25 @@
+@use "../../../styles/variables" as *;
+
+.single-recipe {
+  padding: $space-xh $container-padding;
+
+  &__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__supplies {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: $space-xh;
+    margin-top: $space-xh;
+  }
+
+  &__divider {
+    grid-column: 2;
+    align-self: stretch;
+  }
+}

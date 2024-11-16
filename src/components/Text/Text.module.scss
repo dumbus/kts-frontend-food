@@ -1,0 +1,57 @@
+@use "../../styles/variables" as *;
+
+.text {
+  color: inherit;
+}
+
+.text-title {
+  font-size: 24px;
+}
+
+.text-button {
+  font-size: 16px;
+}
+
+.text-p-20 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.text-p-18 {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.text-p-16 {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.text-p-14 {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.text-weight-normal {
+  font-weight: 400;
+}
+
+.text-weight-medium {
+  font-weight: 500;
+}
+
+.text-weight-bold {
+  font-weight: 700;
+}
+
+.text-color-primary {
+  color: $color-brand;
+}
+
+.text-color-secondary {
+  color: $color-text-secondary;
+}
+
+.text-color-accent {
+  color: $color-text-accent;
+}

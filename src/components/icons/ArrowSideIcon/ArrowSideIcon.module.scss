@@ -1,0 +1,17 @@
+@use "../../../styles/variables" as *;
+
+.color-text-primary {
+  stroke: $color-text-primary;
+}
+
+.color-text-secondary {
+  stroke: $color-text-secondary;
+}
+
+.color-text-accent {
+  stroke: $color-text-accent;
+}
+
+.color-text-white {
+  stroke: $color-white;
+}

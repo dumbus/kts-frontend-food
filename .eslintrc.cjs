@@ -30,6 +30,7 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'no-console': 'warn',
+    'import/default': 'off',
     'import/order': [
       'error',
       {

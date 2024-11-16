@@ -1,0 +1,33 @@
+@use "../../styles/variables" as *;
+
+.multi-dropdown {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: $space-xxs;
+}
+
+.multi-dropdown-options {
+  background-color: $color-white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.multi-dropdown-option {
+  padding: $space-s $space-xs;
+  cursor: pointer;
+}
+
+.multi-dropdown-option:hover {
+  color: $color-text-secondary;
+}
+
+.multi-dropdown-option.selected {
+  color: $color-brand;
+}
+
+/* for screenshot tests (somehow they differ from Storybook) */
+
+// .multi-dropdown-options {
+//   padding-bottom: 8px;
+// }

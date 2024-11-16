@@ -1,0 +1,49 @@
+@use "../../styles/variables" as *;
+
+.card {
+  width: 360px;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.card-image-container {
+  width: 360px;
+  height: 360px;
+  background-color: $color-grey;
+}
+
+.card-img {
+  width: 360px;
+  height: 360px;
+  object-fit: cover;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  padding: $space-xl $space-xs;
+  background-color: $color-white;
+  flex: 1;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xxs;
+  margin-bottom: $space-l;
+  flex: 1;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

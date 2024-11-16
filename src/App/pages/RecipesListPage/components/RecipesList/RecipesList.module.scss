@@ -1,0 +1,27 @@
+@use "../../../../../styles/variables" as *;
+
+.recipes-list {
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    grid-template-rows: repeat(3, auto);
+    gap: $space-l;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  &__item {
+    margin: 0 auto;
+  }
+
+  &__caption-slot {
+    position: relative;
+    display: flex;
+    gap: 4px;
+  }
+
+  &__alarm-clock {
+    position: relative;
+    top: 1px;
+  }
+}

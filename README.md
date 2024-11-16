@@ -1,50 +1,22 @@
-# React + TypeScript + Vite
+# KTS-Food-HW-3
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Основные требования
 
-Currently, two official plugins are available:
+1. **Сетап проекта**: Проект настроен с помощью Vite, использован линтер ESLint и настроены алиасы.
+2. **Страница списка сущностей**: Реализована страница по маршруту `'/'` или `'/recipes'`, отображающая список рецептов.
+3. **Страница отображения одной сущности**: Реализована страница по маршруту `'/recipes/:id'`, отображающая информацию о конкретном рецепте.
+4. **Роутинг**: Подключен роутинг с помощью `react-router-dom v6`.
+5. **Стили**: Стили переписаны на CSS-модули с использованием SCSS; переменные и миксины вынесены в отдельный файл `./src/styles/_variables.scss`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Дополнительные требования
 
-## Expanding the ESLint configuration
+1. Во время загрузки страницы отображается компонент **Loader**.
+2. Создана заготовка под **пагинацию** (компонент **Paginator**).
+3. В папке **utils** находятся функции `./src/utils/getTestRecipe.ts` и `./src/utils/getTestRecipes.ts` для генерации моковых данных для страницы списка сущностей и страницы одной сущности, что экономит запросы на сервер во время разработки.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Дополнительная информация
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. Компонент **Paginator** на данный момент не является рабочим, реализована только заготовка логики.
+2. При возникновении ошибки при обращении на сервер, ошибка выводится в консоль. В дальнейшем планируется использование компонента **Error** для обработки ошибок. Также планируется добавление компонента **ErrorBoundary** для отлова ошибок в приложении.
+3. Компоненты **Input** и **Multidropdown** в данный момент не имеют логики и служат заглушками на странице.
+4. Большинство кнопок в шапке (**Header**) страницы также не имеют логики (за исключением логотипа **Logo**, который может быть использован в качестве ссылки на главную страницу приложения).

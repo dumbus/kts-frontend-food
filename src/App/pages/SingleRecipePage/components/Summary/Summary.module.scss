@@ -1,0 +1,13 @@
+@use "../../../../../styles/variables" as *;
+
+.summary {
+  margin-top: $space-xh;
+  padding: $space-h;
+  background-color: $color-brand-light;
+  border-radius: 10px;
+
+  a {
+    color: $color-text-primary;
+    text-decoration: underline;
+  }
+}

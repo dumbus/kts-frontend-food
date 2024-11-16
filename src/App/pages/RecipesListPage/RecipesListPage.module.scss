@@ -1,0 +1,13 @@
+@use "../../../styles/variables" as *;
+
+.recipes-list {
+  padding: 0 $container-padding $space-xxl $container-padding;
+  position: relative;
+
+  &__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

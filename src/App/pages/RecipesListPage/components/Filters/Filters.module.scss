@@ -1,0 +1,17 @@
+@use "../../../../../styles/variables" as *;
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: $space-l;
+  margin: $space-xh 0;
+
+  &__search {
+    display: flex;
+    gap: $space-l;
+  }
+
+  &__categories {
+    align-self: flex-end;
+  }
+}

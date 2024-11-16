@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  &__back {
+    cursor: pointer;
+    transition: transform 200ms linear;
+
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
+
+  &__text {
+    font-size: 44px;
+    line-height: 48px;
+  }
+}

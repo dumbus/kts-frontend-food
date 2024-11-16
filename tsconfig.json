@@ -25,7 +25,11 @@
     "paths": {
       "components/*": ["components/*"],
       "assets/*": ["assets/*"],
-      "utils/*": ["utils/*"]
+      "utils/*": ["utils/*"],
+      "services/*": ["services/*"],
+      "styles/*": ["styles/*"],
+      "config/*": ["config/*"],
+      "types/*": ["types/*"]
     }
   },
   "include": ["src", ".eslintrx.cjs"],
