@@ -1,13 +1,16 @@
 @use "../../styles/variables" as *;
 
 .multi-dropdown {
+  position: relative;
   width: 300px;
   display: flex;
   flex-direction: column;
-  gap: $space-xxs;
 }
 
 .multi-dropdown-options {
+  position: absolute;
+  top: calc(52px + $space-xxs);
+  width: 100%;
   background-color: $color-white;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);

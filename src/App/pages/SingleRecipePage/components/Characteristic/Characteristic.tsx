@@ -31,35 +31,35 @@ const Characteristic: React.FC<CharacteristicProps> = ({
         <div className={styles['characteristic__item']}>
           <Text view="p-16">Preparation</Text>
           <Text view="p-16" weight="bold" color="accent">
-            {`${preparationMinutes} minutes`}
+            {preparationMinutes} minutes
           </Text>
         </div>
 
         <div className={styles['characteristic__item']}>
           <Text view="p-16">Cooking</Text>
           <Text view="p-16" weight="bold" color="accent">
-            {`${cookingMinutes} minutes`}
+            {cookingMinutes} minutes
           </Text>
         </div>
 
         <div className={styles['characteristic__item']}>
           <Text view="p-16">Total</Text>
           <Text view="p-16" weight="bold" color="accent">
-            {`${totalMinutes} minutes`}
+            {totalMinutes} minutes
           </Text>
         </div>
 
         <div className={styles['characteristic__item']}>
           <Text view="p-16">Ratings</Text>
           <Text view="p-16" weight="bold" color="accent">
-            {`${aggregateLikes} likes`}
+            {aggregateLikes} likes
           </Text>
         </div>
 
         <div className={styles['characteristic__item']}>
           <Text view="p-16">Servings</Text>
           <Text view="p-16" weight="bold" color="accent">
-            {`${servings} servings`}
+            {servings} servings
           </Text>
         </div>
       </div>

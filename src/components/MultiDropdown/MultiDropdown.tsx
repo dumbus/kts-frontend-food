@@ -2,32 +2,26 @@ import classNames from 'classnames';
 import React, { useState, useRef } from 'react';
 
 import useClickOutside from 'hooks/useClickOutside';
+import { IMultiDropdownOption } from 'types/entities';
 
 import Input from '../Input';
 import ArrowDownIcon from '../icons/ArrowDownIcon';
 
 import styles from './MultiDropdown.module.scss';
 
-export type Option = {
-  /** Ключ варианта, используется для отправки на бек/использования в коде */
-  key: string;
-  /** Значение варианта, отображается пользователю */
-  value: string;
-};
-
 /** Пропсы, которые принимает компонент Dropdown */
 type MultiDropdownProps = {
   className?: string;
   /** Массив возможных вариантов для выбора */
-  options: Option[];
+  options: IMultiDropdownOption[];
   /** Текущие выбранные значения поля, может быть пустым */
-  value: Option[];
+  value: IMultiDropdownOption[];
   /** Callback, вызываемый при выборе варианта */
-  onChange: (value: Option[]) => void;
+  onChange: (value: IMultiDropdownOption[]) => void;
   /** Заблокирован ли дропдаун */
   disabled?: boolean;
   /** Возвращает строку которая будет выводится в инпуте. В случае если опции не выбраны, строка должна отображаться как placeholder. */
-  getTitle: (value: Option[]) => string;
+  getTitle: (value: IMultiDropdownOption[]) => string;
 };
 
 const MultiDropdown: React.FC<MultiDropdownProps> = ({ className, options, value, onChange, disabled, getTitle }) => {
@@ -46,7 +40,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ className, options, value
     setIsOpen(true);
   };
 
-  const handleSelection = (option: Option) => {
+  const handleSelection = (option: IMultiDropdownOption) => {
     const isSelected = value.some((selected) => selected.key === option.key);
 
     const newValue = isSelected ? value.filter((selected) => selected.key !== option.key) : [...value, option];

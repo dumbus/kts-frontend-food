@@ -1,4 +1,4 @@
-import { IRawRecipeData } from './types';
+import { IRawRecipeData, IPaginatedRawRecipesData } from 'types/api';
 
 export const getTestRecipes = () => {
   const testRecipes: IRawRecipeData[] = [
@@ -184,5 +184,12 @@ export const getTestRecipes = () => {
     },
   ];
 
-  return testRecipes;
+  const rawData: IPaginatedRawRecipesData = {
+    number: testRecipes.length,
+    offset: 0,
+    totalResults: testRecipes.length * 10,
+    results: testRecipes,
+  };
+
+  return rawData;
 };

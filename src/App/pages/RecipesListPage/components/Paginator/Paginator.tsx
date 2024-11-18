@@ -1,18 +1,31 @@
+import { runInAction } from 'mobx';
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 
 import ArrowSideIcon from 'components/icons/ArrowSideIcon';
+
+import useSearchQuery from 'hooks/useSearchQuery';
+import rootStore from 'store/RootStore';
 
 import SmallButton from '../SmallButton';
 
 import styles from './Paginator.module.scss';
 
 interface PaginatorProps {
-  page: number;
   pages: number;
-  onPageSwitch: (newPage: number) => void;
 }
 
-const Paginator: React.FC<PaginatorProps> = ({ page, pages, onPageSwitch }) => {
+const Paginator: React.FC<PaginatorProps> = ({ pages }) => {
+  const setSearchQuery = useSearchQuery();
+
+  const page = rootStore.query.page ? Number(rootStore.query.page) : 1;
+
+  const onPageSwitch = (newPage: number) => {
+    runInAction(() => {
+      setSearchQuery({ page: newPage }, true);
+    });
+  };
+
   const renderCenterButtons = (page: number, pages: number) => {
     const buttons = [];
     let first, last;
@@ -73,4 +86,4 @@ const Paginator: React.FC<PaginatorProps> = ({ page, pages, onPageSwitch }) => {
   );
 };
 
-export default Paginator;
+export default observer(Paginator);

@@ -1,4 +1,4 @@
-import { IRawSingleRecipeData } from './types';
+import { IRawSingleRecipeData } from 'types/api';
 
 export const getTestRecipe = () => {
   const testRecipe: IRawSingleRecipeData = {

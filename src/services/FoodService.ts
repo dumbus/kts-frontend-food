@@ -1,16 +1,10 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import {
-  IPaginatedRawRecipesData,
-  IRecipeListItem,
-  ISingleRecipe,
-  IRawRecipeData,
-  IRawSingleRecipeData,
-  IIngredient,
-  IDirection,
-} from 'types/entities';
+import { IPaginatedRawRecipesData, IRawRecipeData, IRawSingleRecipeData } from 'types/api';
+import { IRecipeListData, IRecipeListItem, ISingleRecipe, IIngredient, IDirection } from 'types/entities';
 
 import { getClosestFraction } from 'utils/getClosestFraction';
+import { getOffset } from 'utils/getOffset';
 
 class FoodService {
   private _apiClient: AxiosInstance;
@@ -42,28 +36,42 @@ class FoodService {
     }
   };
 
-  getRecipes = async (): Promise<IRecipeListItem[]> => {
+  getRecipes = async (search = '', page = 1, type = ''): Promise<IRecipeListData> => {
     const rawData = await this.getResource<IPaginatedRawRecipesData>({
       url: '/complexSearch',
       params: {
         addRecipeNutrition: true,
         instructionsRequired: true,
         number: 9,
+        offset: getOffset(page),
+        query: search,
+        type: type,
       },
     });
-    const rawRecipesData = rawData.results;
-    const recipesData = this._transformRecipeListData(rawRecipesData);
+    const paginatedData = this._transfrormPaginatedRecipesData(rawData);
 
-    return recipesData;
+    return paginatedData;
   };
 
-  getRecipeById = async (id = '1'): Promise<ISingleRecipe> => {
+  getRecipeById = async (id: string): Promise<ISingleRecipe> => {
     const rawData = await this.getResource<IRawSingleRecipeData>({
       url: `/${id}/information`,
     });
     const recipeData = this._transformSingleRecipeData(rawData);
 
     return recipeData;
+  };
+
+  _transfrormPaginatedRecipesData = (rawPaginatedData: IPaginatedRawRecipesData): IRecipeListData => {
+    const data: IRecipeListData = {
+      list: [],
+      totalResults: rawPaginatedData.totalResults,
+    };
+    const rawRecipesData = rawPaginatedData.results;
+
+    data.list = this._transformRecipeListData(rawRecipesData);
+
+    return data;
   };
 
   _transformRecipeListData = (rawRecipesData: IRawRecipeData[]): IRecipeListItem[] => {
@@ -98,13 +106,11 @@ class FoodService {
 
     const equipmentList: string[] = [];
     const directions: IDirection[] = [];
-    const ingredients: string[] = [];
-
-    rawRecipeData.extendedIngredients.forEach(({ name, amount, unit }: IIngredient) => {
+    const ingredients: string[] = rawRecipeData.extendedIngredients.map(({ name, amount, unit }: IIngredient) => {
       const fractionedAmount = getClosestFraction(amount);
       const currentIngredient = `${fractionedAmount} ${unit} ${name}`;
 
-      ingredients.push(currentIngredient);
+      return currentIngredient;
     });
 
     rawRecipeData.analyzedInstructions[0].steps.forEach(({ number, step, equipment }) => {

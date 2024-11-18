@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import classNames from 'classnames';
+import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Loader from 'components/Loader';
-import FoodService from 'services/FoodService';
 
-import { ISingleRecipe } from 'types/entities';
-// import { getTestRecipe } from 'utils/getTestRecipe';
+import useLocalStore from 'hooks/useLocalStore';
+import SingleRecipeStore from 'store/SingleRecipeStore';
+import { Meta } from 'utils/meta';
 
 import Characteristic from './components/Characteristic';
 import Directions from './components/Directions';
@@ -17,81 +19,52 @@ import Supplies from './components/Supplies';
 import styles from './SingleRecipePage.module.scss';
 
 const SingleRecipePage = () => {
-  const [recipeData, setRecipeData] = useState<ISingleRecipe | null>(null);
-  const [isLoading, setLoading] = useState(true);
+  const singleRecipeStore = useLocalStore(() => new SingleRecipeStore());
 
-  // ========================= Development with mock data =========================
-
-  // const foodService = new FoodService();
-
-  // useEffect(() => {
-  //   onRequest();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
-  // const onRequest = () => {
-  //   const rawRecipe = getTestRecipe();
-  //   const recipeData = foodService._transformSingleRecipeData(rawRecipe);
-
-  //   setRecipeData(recipeData);
-  //   setLoading(false);
-  // };
-
-  // ========================= Get real data from API =========================
-
-  const foodService = new FoodService();
-  const { id } = useParams();
+  const { id = '' } = useParams();
 
   useEffect(() => {
-    onRequest();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    singleRecipeStore.getRecipesListData(id);
+  }, [singleRecipeStore, id]);
 
-  const onRequest = () => {
-    foodService.getRecipeById(id).then(onRecipeLoaded).catch(onError);
-  };
-
-  const onRecipeLoaded = (recipesData: ISingleRecipe) => {
-    setRecipeData(recipesData);
-    setLoading(false);
-  };
-
-  const onError = (error: Error) => {
-    // eslint-disable-next-line no-console
-    console.log('Some error occured:', error);
-  };
+  const rootClass = classNames('container', styles['single-recipe']);
 
   return (
-    <div className={`container ${styles['single-recipe']}`}>
-      {!isLoading && recipeData !== null ? (
+    <div className={rootClass}>
+      {singleRecipeStore.meta === Meta.loading && <Loader className={styles['single-recipe__loader']} />}
+
+      {/* Временное решение, пока нет компонента Error: */}
+      {singleRecipeStore.meta === Meta.error && (
+        <>Произошла ошибка: {singleRecipeStore.error?.message || 'Неизвестная ошибка'}</>
+      )}
+
+      {singleRecipeStore.meta === Meta.success && singleRecipeStore.recipe !== null && (
         <>
-          <Header title={recipeData.title} />
+          <Header title={singleRecipeStore.recipe.title} />
 
           <Characteristic
-            title={recipeData.title}
-            image={recipeData.image}
-            preparationMinutes={recipeData.preparationMinutes}
-            cookingMinutes={recipeData.cookingMinutes}
-            totalMinutes={recipeData.totalMinutes}
-            aggregateLikes={recipeData.aggregateLikes}
-            servings={recipeData.servings}
+            title={singleRecipeStore.recipe.title}
+            image={singleRecipeStore.recipe.image}
+            preparationMinutes={singleRecipeStore.recipe.preparationMinutes}
+            cookingMinutes={singleRecipeStore.recipe.cookingMinutes}
+            totalMinutes={singleRecipeStore.recipe.totalMinutes}
+            aggregateLikes={singleRecipeStore.recipe.aggregateLikes}
+            servings={singleRecipeStore.recipe.servings}
           />
 
-          <Summary summary={recipeData.summary} />
+          <Summary summary={singleRecipeStore.recipe.summary} />
 
           <div className={styles['single-recipe__supplies']}>
-            <Supplies type="ingredients" items={recipeData.ingredients} />
+            <Supplies type="ingredients" items={singleRecipeStore.recipe.ingredients} />
             <Divider className={styles['single-recipe__divider']} />
-            <Supplies type="equipment" items={recipeData.equipment} />
+            <Supplies type="equipment" items={singleRecipeStore.recipe.equipment} />
           </div>
 
-          <Directions directions={recipeData.directions} />
+          <Directions directions={singleRecipeStore.recipe.directions} />
         </>
-      ) : (
-        <Loader className={styles['single-recipe__loader']} />
       )}
     </div>
   );
 };
 
-export default SingleRecipePage;
+export default observer(SingleRecipePage);
