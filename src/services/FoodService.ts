@@ -106,13 +106,11 @@ class FoodService {
 
     const equipmentList: string[] = [];
     const directions: IDirection[] = [];
-    const ingredients: string[] = [];
-
-    rawRecipeData.extendedIngredients.forEach(({ name, amount, unit }: IIngredient) => {
+    const ingredients: string[] = rawRecipeData.extendedIngredients.map(({ name, amount, unit }: IIngredient) => {
       const fractionedAmount = getClosestFraction(amount);
       const currentIngredient = `${fractionedAmount} ${unit} ${name}`;
 
-      ingredients.push(currentIngredient);
+      return currentIngredient;
     });
 
     rawRecipeData.analyzedInstructions[0].steps.forEach(({ number, step, equipment }) => {
