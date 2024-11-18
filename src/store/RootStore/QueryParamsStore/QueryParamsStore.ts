@@ -2,21 +2,25 @@ import { action, makeObservable, observable, computed, reaction } from 'mobx';
 import { IMultiDropdownOption, IQueryParams } from 'types/entities';
 import { stringifyFilterOptions } from 'utils/stringifyFilterOptions';
 
-type PrivateFields = '_params' | '_query' | '_updateQuery';
+type PrivateFields = '_params' | '_query' | '_reload' | '_updateQuery';
 
 export default class QueryParamsStore {
   private _params: IQueryParams = {};
   private _query: string = '';
+  private _reload: boolean = false;
 
   constructor() {
     makeObservable<QueryParamsStore, PrivateFields>(this, {
       _params: observable.ref,
-      _query: observable.ref,
+      _query: observable,
+      _reload: observable,
       name: computed,
       type: computed,
       page: computed,
       query: computed,
+      reload: computed,
       setParams: action,
+      setReload: action,
       _updateQuery: action,
     });
 
@@ -44,11 +48,21 @@ export default class QueryParamsStore {
     return this._query;
   }
 
-  setParams(newParams: IQueryParams): void {
+  get reload(): boolean {
+    return this._reload;
+  }
+
+  setParams(newParams: IQueryParams, needReload = false): void {
     this._params = {
       ...this._params,
       ...newParams,
     };
+
+    this.setReload(needReload);
+  }
+
+  setReload(needReload = false): void {
+    this._reload = needReload;
   }
 
   private _updateQuery() {

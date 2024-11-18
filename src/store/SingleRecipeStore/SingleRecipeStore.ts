@@ -17,7 +17,7 @@ export default class SingleRecipeStore implements ILocalStore {
   private _error: Error | null = null;
 
   // Логика по переключению режима получения данных ('mock' | 'api')
-  private _dataType: DataType = 'api';
+  private _dataType: DataType = 'mock';
 
   constructor() {
     makeObservable<SingleRecipeStore, PrivateFields>(this, {

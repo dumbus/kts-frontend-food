@@ -1,9 +1,10 @@
+import { runInAction } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import ArrowSideIcon from 'components/icons/ArrowSideIcon';
 
+import useSearchQuery from 'hooks/useSearchQuery';
 import rootStore from 'store/RootStore';
 
 import SmallButton from '../SmallButton';
@@ -15,17 +16,14 @@ interface PaginatorProps {
 }
 
 const Paginator: React.FC<PaginatorProps> = ({ pages }) => {
-  const navigate = useNavigate();
+  const setSearchQuery = useSearchQuery();
 
   const page = rootStore.query.page ? Number(rootStore.query.page) : 1;
 
   const onPageSwitch = (newPage: number) => {
-    rootStore.query.setParams({ page: newPage });
-
-    const query = rootStore.query.query;
-
-    const newUrl = query ? `${window.location.pathname}?${query}` : window.location.pathname;
-    navigate(newUrl);
+    runInAction(() => {
+      setSearchQuery({ page: newPage }, true);
+    });
   };
 
   const renderCenterButtons = (page: number, pages: number) => {

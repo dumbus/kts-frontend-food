@@ -22,7 +22,7 @@ export default class RecipesListStore implements ILocalStore {
   private _pages: number = 1;
 
   // Логика по переключению режима получения данных ('mock' | 'api')
-  private _dataType: DataType = 'api';
+  private _dataType: DataType = 'mock';
 
   constructor() {
     makeObservable<RecipesListStore, PrivateFields>(this, {

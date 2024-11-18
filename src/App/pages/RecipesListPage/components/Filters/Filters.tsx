@@ -1,11 +1,12 @@
+import { runInAction } from 'mobx';
 import { observer } from 'mobx-react-lite';
-import { useLocation, useNavigate } from 'react-router-dom';
 
 import Button from 'components/Button';
 import Input from 'components/Input';
 import MultiDropdown from 'components/MultiDropdown';
 import SearchIcon from 'components/icons/SearchIcon';
 
+import useSearchQuery from 'hooks/useSearchQuery';
 import rootStore from 'store/RootStore';
 
 import { IMultiDropdownOption } from 'types/entities';
@@ -15,35 +16,26 @@ import { getFilterOptions } from 'utils/getFilterOptions';
 import styles from './Filters.module.scss';
 
 const Filters = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const query = rootStore.query.query;
+  const setSearchQuery = useSearchQuery();
 
   const onInputChange = (newValue: string) => {
-    rootStore.query.setParams({ name: newValue });
-
-    // Надо бы вынести в хук, чтобы избежать повторения
-    const newUrl = query ? `${location.pathname}?${query}` : location.pathname;
-    window.history.replaceState({}, '', newUrl);
+    runInAction(() => {
+      setSearchQuery({ name: newValue });
+    });
   };
 
   const onMultidropdownChange = (newValue: IMultiDropdownOption[]) => {
-    rootStore.query.setParams({ type: newValue });
-
-    // Надо бы вынести в хук, чтобы избежать повторения
-    const newUrl = query ? `${location.pathname}?${query}` : location.pathname;
-    window.history.replaceState({}, '', newUrl);
+    runInAction(() => {
+      setSearchQuery({ type: newValue });
+    });
   };
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    rootStore.query.setParams({ page: 1 });
-
-    // Надо бы вынести в хук, чтобы избежать повторения
-    const newUrl = query ? `${window.location.pathname}?${query}` : window.location.pathname;
-    navigate(newUrl);
+    runInAction(() => {
+      setSearchQuery({ page: 1 }, true);
+    });
   };
 
   const getTitle = (elements: IMultiDropdownOption[]) => {
