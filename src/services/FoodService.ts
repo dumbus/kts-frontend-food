@@ -42,7 +42,7 @@ class FoodService {
       params: {
         addRecipeNutrition: true,
         instructionsRequired: true,
-        number: 9,
+        number: 12,
         offset: getOffset(page),
         query: search,
         type: type,

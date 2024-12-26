@@ -182,6 +182,69 @@ export const getTestRecipes = () => {
         ],
       },
     },
+    {
+      id: 10,
+      title: 'Pasta Primavera',
+      image: '',
+      cookingMinutes: 25,
+      nutrition: {
+        nutrients: [
+          { name: 'Calories', amount: 330 },
+          { name: 'Fat', amount: 12 },
+          { name: 'Protein', amount: 10 },
+          { name: 'Carbohydrates', amount: 45 },
+        ],
+        ingredients: [
+          { name: 'penne pasta', amount: 150, unit: 'g' },
+          { name: 'cherry tomatoes', amount: 100, unit: 'g' },
+          { name: 'bell pepper', amount: 50, unit: 'g' },
+          { name: 'zucchini', amount: 50, unit: 'g' },
+          { name: 'parmesan cheese', amount: 30, unit: 'g' },
+        ],
+      },
+    },
+    {
+      id: 11,
+      title: 'Fish Tacos',
+      image: '',
+      cookingMinutes: 20,
+      nutrition: {
+        nutrients: [
+          { name: 'Calories', amount: 280 },
+          { name: 'Fat', amount: 12 },
+          { name: 'Protein', amount: 18 },
+          { name: 'Carbohydrates', amount: 25 },
+        ],
+        ingredients: [
+          { name: 'white fish fillets', amount: 150, unit: 'g' },
+          { name: 'corn tortillas', amount: 3, unit: 'pcs' },
+          { name: 'avocado', amount: 50, unit: 'g' },
+          { name: 'lime', amount: 1, unit: 'pcs' },
+          { name: 'cabbage', amount: 50, unit: 'g' },
+        ],
+      },
+    },
+    {
+      id: 12,
+      title: 'Chicken Fried Rice',
+      image: '',
+      cookingMinutes: 20,
+      nutrition: {
+        nutrients: [
+          { name: 'Calories', amount: 400 },
+          { name: 'Fat', amount: 15 },
+          { name: 'Protein', amount: 25 },
+          { name: 'Carbohydrates', amount: 45 },
+        ],
+        ingredients: [
+          { name: 'chicken breast', amount: 150, unit: 'g' },
+          { name: 'cooked rice', amount: 200, unit: 'g' },
+          { name: 'peas', amount: 50, unit: 'g' },
+          { name: 'carrot', amount: 50, unit: 'g' },
+          { name: 'soy sauce', amount: 30, unit: 'ml' },
+        ],
+      },
+    },
   ];
 
   const rawData: IPaginatedRawRecipesData = {
