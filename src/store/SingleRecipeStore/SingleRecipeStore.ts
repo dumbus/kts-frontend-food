@@ -5,6 +5,8 @@ import FoodService from 'services/FoodService';
 import { ISingleRecipe, ILocalStore, DataType } from 'types/entities';
 import { getTestRecipe } from 'utils/getTestRecipe';
 
+import { PageType } from 'types/entities';
+
 import { Meta } from 'utils/meta';
 
 type PrivateFields = '_recipe' | '_meta' | '_error';
@@ -27,7 +29,7 @@ export default class SingleRecipeStore implements ILocalStore {
       recipe: computed,
       meta: computed,
       error: computed,
-      getRecipesListData: action,
+      getRecipeData: action,
       destroy: action,
     });
   }
@@ -44,7 +46,7 @@ export default class SingleRecipeStore implements ILocalStore {
     return this._error;
   }
 
-  async getRecipesListData(id: string) {
+  async getRecipeData(pageType: PageType, id: string) {
     this._meta = Meta.loading;
     this._recipe = null;
 
@@ -58,7 +60,15 @@ export default class SingleRecipeStore implements ILocalStore {
 
     if (this._dataType === 'api') {
       try {
-        const recipeData = await this._foodService.getRecipeById(id);
+        let recipeData = null;
+
+        if (pageType === 'single') {
+          recipeData = await this._foodService.getRecipeById(id);
+        }
+
+        if (pageType === 'random') {
+          recipeData = await this._foodService.getRandomRecipe();
+        }
 
         runInAction(() => {
           this._meta = Meta.success;

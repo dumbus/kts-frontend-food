@@ -8,6 +8,7 @@ import Loader from 'components/Loader';
 
 import useLocalStore from 'hooks/useLocalStore';
 import SingleRecipeStore from 'store/SingleRecipeStore';
+import { PageType } from 'types/entities';
 import { Meta } from 'utils/meta';
 
 import Characteristic from './components/Characteristic';
@@ -19,14 +20,18 @@ import Supplies from './components/Supplies';
 
 import styles from './SingleRecipePage.module.scss';
 
-const SingleRecipePage = () => {
+type SingleRecipePageProps = {
+  pageType: PageType;
+};
+
+const SingleRecipePage: React.FC<SingleRecipePageProps> = ({ pageType }) => {
   const singleRecipeStore = useLocalStore(() => new SingleRecipeStore());
 
-  const { id = '' } = useParams();
+  const { id = '', timestamp = '' } = useParams();
 
   useEffect(() => {
-    singleRecipeStore.getRecipesListData(id);
-  }, [singleRecipeStore, id]);
+    singleRecipeStore.getRecipeData(pageType, id);
+  }, [singleRecipeStore, id, pageType, timestamp]);
 
   const rootClass = classNames('container', styles['single-recipe'], {
     [styles['single-recipe__error']]: singleRecipeStore.meta === Meta.error,

@@ -30,7 +30,8 @@ const App = () => {
       <Routes>
         <Route path={ROUTES.recipes()} element={<Main />}>
           <Route index element={<RecipesListPage />} />
-          <Route path=":id" element={<SingleRecipePage />} />
+          <Route path=":id" element={<SingleRecipePage pageType="single" />} />
+          <Route path="random/:timestamp" element={<SingleRecipePage pageType="random" />} />
         </Route>
         <Route path="*" element={<Navigate to={ROUTES.recipes()} replace />} />
       </Routes>

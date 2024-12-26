@@ -62,6 +62,18 @@ class FoodService {
     return recipeData;
   };
 
+  getRandomRecipe = async (): Promise<ISingleRecipe> => {
+    const rawData = await this.getResource<{ recipes: IRawSingleRecipeData[] }>({
+      url: '/random',
+      params: {
+        number: 1,
+      },
+    });
+
+    const recipeData = this._transformSingleRecipeData(rawData.recipes[0]);
+    return recipeData;
+  };
+
   _transfrormPaginatedRecipesData = (rawPaginatedData: IPaginatedRawRecipesData): IRecipeListData => {
     const data: IRecipeListData = {
       list: [],
