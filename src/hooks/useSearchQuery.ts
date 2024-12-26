@@ -12,12 +12,16 @@ const useSearchQuery = () => {
 
   useEffect(() => {
     const disposer = reaction(
-      () => rootStore.query.query,
-      (query) => {
+      () => [rootStore.query.query, rootStore.query.reload],
+      ([query, reload]) => {
         const newUrl = query ? `${location.pathname}?${query}` : location.pathname;
 
-        if (rootStore.query.reload) {
-          navigate(newUrl, { replace: true });
+        if (reload) {
+          runInAction(() => {
+            rootStore.query.setReload(false);
+          });
+
+          navigate(newUrl);
         } else {
           window.history.replaceState({}, '', newUrl);
         }
