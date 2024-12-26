@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import imageTemplate from 'assets/recipe-image-template.jpg';
 
@@ -25,11 +25,15 @@ const Characteristic: React.FC<CharacteristicProps> = ({
   aggregateLikes,
   servings,
 }) => {
-  const imageSrc = image.length ? image : imageTemplate;
+  const [imageSrc, setImageSrc] = useState(image);
+
+  const handleImageError = () => {
+    setImageSrc(imageTemplate);
+  };
 
   return (
     <div className={styles['characteristic']}>
-      <img className={styles['characteristic__image']} src={imageSrc} alt={title} />
+      <img className={styles['characteristic__image']} src={imageSrc} alt={title} onError={handleImageError} />
 
       <div className={styles['characteristic__list']}>
         <div className={styles['characteristic__item']}>

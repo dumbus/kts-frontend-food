@@ -2,10 +2,8 @@ import { makeObservable, observable, action, computed, runInAction } from 'mobx'
 
 import FoodService from 'services/FoodService';
 
-import { ISingleRecipe, ILocalStore, DataType } from 'types/entities';
+import { ISingleRecipe, ILocalStore, DataType, PageType } from 'types/entities';
 import { getTestRecipe } from 'utils/getTestRecipe';
-
-import { PageType } from 'types/entities';
 
 import { Meta } from 'utils/meta';
 

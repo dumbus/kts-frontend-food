@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { useState } from 'react';
 
 import imageTemplate from 'assets/recipe-image-template.jpg';
 
@@ -36,14 +36,18 @@ const Card: React.FC<CardProps> = ({
   onClick,
   actionSlot,
 }) => {
-  const cardClasses = classNames(styles['card'], className);
+  const [imageSrc, setImageSrc] = useState(image);
 
-  const imageSrc = image.length ? image : imageTemplate;
+  const handleImageError = () => {
+    setImageSrc(imageTemplate);
+  };
+
+  const cardClasses = classNames(styles['card'], className);
 
   return (
     <div className={cardClasses} onClick={onClick}>
       <div className={styles['card-image-container']}>
-        <img src={imageSrc} alt={title?.toString()} className={styles['card-img']} />
+        <img src={imageSrc} alt={title?.toString()} className={styles['card-img']} onError={handleImageError} />
       </div>
 
       <div className={styles['card-content']}>
