@@ -5,7 +5,7 @@ export const getTestRecipes = () => {
     {
       id: 1,
       title: 'Spaghetti Carbonara',
-      image: 'https://img.spoonacular.com/recipes/715446-312x231.jpg',
+      image: '',
       cookingMinutes: 20,
       nutrition: {
         nutrients: [
@@ -25,7 +25,7 @@ export const getTestRecipes = () => {
     {
       id: 2,
       title: 'Chicken Caesar Salad',
-      image: 'https://img.spoonacular.com/recipes/632253-312x231.jpg',
+      image: '',
       cookingMinutes: 15,
       nutrition: {
         nutrients: [
@@ -45,7 +45,7 @@ export const getTestRecipes = () => {
     {
       id: 3,
       title: 'Vegetable Stir Fry',
-      image: 'https://img.spoonacular.com/recipes/664647-312x231.jpg',
+      image: '',
       cookingMinutes: 10,
       nutrition: {
         nutrients: [
@@ -65,7 +65,7 @@ export const getTestRecipes = () => {
     {
       id: 4,
       title: 'Beef Tacos',
-      image: 'https://img.spoonacular.com/recipes/551410-312x231.jpg',
+      image: '',
       cookingMinutes: 25,
       nutrition: {
         nutrients: [
@@ -85,7 +85,7 @@ export const getTestRecipes = () => {
     {
       id: 5,
       title: 'Margherita Pizza',
-      image: 'https://img.spoonacular.com/recipes/632273-312x231.jpg',
+      image: '',
       cookingMinutes: 15,
       nutrition: {
         nutrients: [
@@ -105,7 +105,7 @@ export const getTestRecipes = () => {
     {
       id: 6,
       title: 'Chocolate Chip Cookies',
-      image: 'https://img.spoonacular.com/recipes/639251-312x231.jpg',
+      image: '',
       cookingMinutes: 10,
       nutrition: {
         nutrients: [
@@ -125,7 +125,7 @@ export const getTestRecipes = () => {
     {
       id: 7,
       title: 'Greek Salad',
-      image: 'https://img.spoonacular.com/recipes/653789-312x231.jpg',
+      image: '',
       cookingMinutes: 10,
       nutrition: {
         nutrients: [
@@ -145,7 +145,7 @@ export const getTestRecipes = () => {
     {
       id: 8,
       title: 'Pancakes',
-      image: 'https://img.spoonacular.com/recipes/648247-312x231.jpg',
+      image: '',
       cookingMinutes: 15,
       nutrition: {
         nutrients: [
@@ -165,7 +165,7 @@ export const getTestRecipes = () => {
     {
       id: 9,
       title: 'Tomato Basil Soup',
-      image: 'https://img.spoonacular.com/recipes/636608-312x231.jpg',
+      image: '',
       cookingMinutes: 30,
       nutrition: {
         nutrients: [

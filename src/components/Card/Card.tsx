@@ -1,6 +1,8 @@
 import classNames from 'classnames';
 import React from 'react';
 
+import imageTemplate from 'assets/recipe-image-template.jpg';
+
 import Text from '../Text';
 
 import styles from './Card.module.scss';
@@ -36,10 +38,12 @@ const Card: React.FC<CardProps> = ({
 }) => {
   const cardClasses = classNames(styles['card'], className);
 
+  const imageSrc = image.length ? image : imageTemplate;
+
   return (
     <div className={cardClasses} onClick={onClick}>
       <div className={styles['card-image-container']}>
-        <img src={image} alt={title?.toString()} className={styles['card-img']} />
+        <img src={imageSrc} alt={title?.toString()} className={styles['card-img']} />
       </div>
 
       <div className={styles['card-content']}>

@@ -4,7 +4,7 @@ export const getTestRecipe = () => {
   const testRecipe: IRawSingleRecipeData = {
     id: '10',
     title: 'Classic Lasagna',
-    image: 'https://img.spoonacular.com/recipes/10-312x231.jpg',
+    image: '',
     preparationMinutes: 20,
     cookingMinutes: 60,
     aggregateLikes: 1234,

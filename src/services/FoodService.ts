@@ -81,7 +81,7 @@ class FoodService {
       return {
         id: rawRecipe.id,
         title: rawRecipe.title || 'No information about Title',
-        imageSrc: rawRecipe.image,
+        imageSrc: rawRecipe.image || '',
         cookingMinutes: rawRecipe.cookingMinutes || 0,
         nutrition: calories,
         ingredients: rawRecipe.nutrition.ingredients.map((ingredient) => ingredient.name),
@@ -92,7 +92,7 @@ class FoodService {
   _transformSingleRecipeData = (rawRecipeData: IRawSingleRecipeData): ISingleRecipe => {
     const recipeData: ISingleRecipe = {
       title: rawRecipeData.title || 'No information about Title',
-      image: rawRecipeData.image,
+      image: rawRecipeData.image || '',
       preparationMinutes: rawRecipeData.preparationMinutes || 0,
       cookingMinutes: rawRecipeData.cookingMinutes || 0,
       totalMinutes: rawRecipeData.preparationMinutes + rawRecipeData.cookingMinutes,

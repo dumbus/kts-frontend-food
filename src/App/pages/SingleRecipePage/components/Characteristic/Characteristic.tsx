@@ -1,5 +1,7 @@
 import React from 'react';
 
+import imageTemplate from 'assets/recipe-image-template.jpg';
+
 import Text from 'components/Text';
 
 import styles from './Characteristic.module.scss';
@@ -23,9 +25,11 @@ const Characteristic: React.FC<CharacteristicProps> = ({
   aggregateLikes,
   servings,
 }) => {
+  const imageSrc = image.length ? image : imageTemplate;
+
   return (
     <div className={styles['characteristic']}>
-      <img className={styles['characteristic__image']} src={image} alt={title} />
+      <img className={styles['characteristic__image']} src={imageSrc} alt={title} />
 
       <div className={styles['characteristic__list']}>
         <div className={styles['characteristic__item']}>
