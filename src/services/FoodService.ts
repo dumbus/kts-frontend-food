@@ -3,6 +3,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { IPaginatedRawRecipesData, IRawRecipeData, IRawSingleRecipeData } from 'types/api';
 import { IRecipeListData, IRecipeListItem, ISingleRecipe, IIngredient, IDirection } from 'types/entities';
 
+import { RECIPES_ON_PAGE } from 'utils/constants';
 import { getClosestFraction } from 'utils/getClosestFraction';
 import { getOffset } from 'utils/getOffset';
 
@@ -42,7 +43,7 @@ class FoodService {
       params: {
         addRecipeNutrition: true,
         instructionsRequired: true,
-        number: 12,
+        number: RECIPES_ON_PAGE,
         offset: getOffset(page),
         query: search,
         type: type,
