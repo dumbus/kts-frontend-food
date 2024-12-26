@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import Error from 'components/Error';
 import Loader from 'components/Loader';
 
 import useLocalStore from 'hooks/useLocalStore';
@@ -33,15 +34,16 @@ const RecipesListPage = () => {
     recipesListStore.getRecipesListData();
   }, [location.search, recipesListStore]);
 
-  const rootClass = classNames('container', styles['recipes-list']);
+  const rootClass = classNames('container', styles['recipes-list'], {
+    [styles['recipes-list__error']]: recipesListStore.meta === Meta.error,
+  });
 
   return (
     <div className={rootClass}>
       {recipesListStore.meta === Meta.loading && <Loader className={styles['recipes-list__loader']} />}
 
-      {/* Временное решение, пока нет компонента Error: */}
       {recipesListStore.meta === Meta.error && (
-        <>Произошла ошибка: {recipesListStore.error?.message || 'Неизвестная ошибка'}</>
+        <Error errorMessage={recipesListStore.error?.message || 'Unknown error'} />
       )}
 
       {recipesListStore.meta === Meta.success && (

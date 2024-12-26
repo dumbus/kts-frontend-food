@@ -3,6 +3,11 @@
 .single-recipe {
   padding: $space-xh $container-padding;
 
+  &__error {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__loader {
     position: absolute;
     top: 50%;

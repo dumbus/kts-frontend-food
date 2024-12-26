@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+import Error from 'components/Error';
 import Loader from 'components/Loader';
 
 import useLocalStore from 'hooks/useLocalStore';
@@ -27,15 +28,16 @@ const SingleRecipePage = () => {
     singleRecipeStore.getRecipesListData(id);
   }, [singleRecipeStore, id]);
 
-  const rootClass = classNames('container', styles['single-recipe']);
+  const rootClass = classNames('container', styles['single-recipe'], {
+    [styles['single-recipe__error']]: singleRecipeStore.meta === Meta.error,
+  });
 
   return (
     <div className={rootClass}>
       {singleRecipeStore.meta === Meta.loading && <Loader className={styles['single-recipe__loader']} />}
 
-      {/* Временное решение, пока нет компонента Error: */}
       {singleRecipeStore.meta === Meta.error && (
-        <>Произошла ошибка: {singleRecipeStore.error?.message || 'Неизвестная ошибка'}</>
+        <Error errorMessage={singleRecipeStore.error?.message || 'Unknown error'} />
       )}
 
       {singleRecipeStore.meta === Meta.success && singleRecipeStore.recipe !== null && (
