@@ -6,3 +6,7 @@ export const getFilterOptions = (enumObj: Record<string, string>): IMultiDropdow
     value,
   }));
 };
+
+export const getStringifiedFilterOptions = (options: IMultiDropdownOption[]) => {
+  return options.map((option) => option.key).join(',');
+};

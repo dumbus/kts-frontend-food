@@ -1,8 +1,8 @@
 import { IQueryParams, IMultiDropdownOption } from 'types/entities';
 
-import { Categories } from './categories';
+import { Categories } from '../enums/categories';
 
-export const parseUrlParams = (params: URLSearchParams): IQueryParams => {
+export const getUrlParams = (params: URLSearchParams): IQueryParams => {
   const queryParams: IQueryParams = {
     name: '',
     type: [],

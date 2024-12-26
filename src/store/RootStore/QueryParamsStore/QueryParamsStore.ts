@@ -1,6 +1,6 @@
 import { action, makeObservable, observable, computed, reaction } from 'mobx';
 import { IMultiDropdownOption, IQueryParams } from 'types/entities';
-import { stringifyFilterOptions } from 'utils/stringifyFilterOptions';
+import { getStringifiedFilterOptions } from 'utils/helpers';
 
 type PrivateFields = '_params' | '_query' | '_reload' | '_updateQuery';
 
@@ -73,7 +73,7 @@ export default class QueryParamsStore {
     }
 
     if (this._params.type) {
-      const typeStr = stringifyFilterOptions(this._params.type);
+      const typeStr = getStringifiedFilterOptions(this._params.type);
 
       if (typeStr) {
         params.push(`type=${encodeURIComponent(typeStr)}`);

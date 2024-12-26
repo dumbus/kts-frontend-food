@@ -1,3 +1,7 @@
+export const getCapitalizedWord = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 export const getClosestFraction = (amount: number): string => {
   if (Number.isInteger(amount)) {
     return amount.toString();
@@ -28,4 +32,8 @@ export const getClosestFraction = (amount: number): string => {
   return integerPart > 0
     ? `${integerPart} ${closestNumerator}/${closestDenominator}`
     : `${closestNumerator}/${closestDenominator}`;
+};
+
+export const getTimeStamp = () => {
+  return Date.now();
 };

@@ -9,8 +9,8 @@ import Loader from 'components/Loader';
 import useLocalStore from 'hooks/useLocalStore';
 import RecipesListStore from 'store/RecipesListStore';
 import rootStore from 'store/RootStore';
-import { Meta } from 'utils/meta';
-import { parseUrlParams } from 'utils/parseUrlParams';
+import { Meta } from 'utils/enums';
+import { getUrlParams } from 'utils/helpers';
 
 import Filters from './components/Filters';
 import Header from './components/Header';
@@ -27,7 +27,7 @@ const RecipesListPage = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const newParams = parseUrlParams(params);
+    const newParams = getUrlParams(params);
 
     rootStore.query.setParams(newParams);
 

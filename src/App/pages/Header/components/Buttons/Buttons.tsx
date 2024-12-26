@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { ROUTES } from 'config/routes';
 
-import { getTimeStamp } from 'utils/getTimeStamp';
+import { getTimeStamp } from 'utils/helpers';
 
 import HeartIcon from '../HeartIcon';
 import PersonIcon from '../PersonIcon';

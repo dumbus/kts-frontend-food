@@ -62,6 +62,4 @@ export interface IQueryParams {
   page?: number;
 }
 
-export type DataType = 'mock' | 'api';
-
 export type PageType = 'single' | 'random';

@@ -4,8 +4,7 @@ import { IPaginatedRawRecipesData, IRawRecipeData, IRawSingleRecipeData } from '
 import { IRecipeListData, IRecipeListItem, ISingleRecipe, IIngredient, IDirection } from 'types/entities';
 
 import { RECIPES_ON_PAGE } from 'utils/constants';
-import { getClosestFraction } from 'utils/getClosestFraction';
-import { getOffset } from 'utils/getOffset';
+import { getClosestFraction, getOffset } from 'utils/helpers';
 
 class FoodService {
   private _apiClient: AxiosInstance;

@@ -9,7 +9,7 @@ import Loader from 'components/Loader';
 import useLocalStore from 'hooks/useLocalStore';
 import SingleRecipeStore from 'store/SingleRecipeStore';
 import { PageType } from 'types/entities';
-import { Meta } from 'utils/meta';
+import { Meta } from 'utils/enums';
 
 import Characteristic from './components/Characteristic';
 import Directions from './components/Directions';

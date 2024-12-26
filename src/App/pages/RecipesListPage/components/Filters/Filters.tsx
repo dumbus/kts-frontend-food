@@ -10,8 +10,8 @@ import useSearchQuery from 'hooks/useSearchQuery';
 import rootStore from 'store/RootStore';
 
 import { IMultiDropdownOption } from 'types/entities';
-import { Categories } from 'utils/categories';
-import { getFilterOptions } from 'utils/getFilterOptions';
+import { Categories } from 'utils/enums';
+import { getFilterOptions } from 'utils/helpers';
 
 import styles from './Filters.module.scss';
 
