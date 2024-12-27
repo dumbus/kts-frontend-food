@@ -49,11 +49,11 @@ const Filters = () => {
   const options = getFilterOptions(Categories);
 
   return (
-    <div className={styles['filters']}>
+    <form onSubmit={onSubmit} className={styles['filters']}>
       <div className={styles['filters__search']}>
         <Input value={rootStore.query.name} placeholder="Enter dishes" onChange={onInputChange} />
 
-        <Button type="button" onClick={onSubmit} noText>
+        <Button buttonType="submit" noText>
           <SearchIcon color="white" />
         </Button>
       </div>
@@ -65,7 +65,7 @@ const Filters = () => {
         onChange={onMultidropdownChange}
         getTitle={getTitle}
       />
-    </div>
+    </form>
   );
 };
 
