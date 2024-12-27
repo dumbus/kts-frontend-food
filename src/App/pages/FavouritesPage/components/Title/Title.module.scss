@@ -1,0 +1,13 @@
+@use "../../../../../styles/variables" as *;
+
+.title {
+  margin-top: $space-xl;
+  text-align: center;
+  font-size: 36px;
+  font-style: italic;
+}
+
+.subtitle {
+  margin-top: $space-l;
+  text-align: center;
+}

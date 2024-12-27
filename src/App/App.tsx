@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation } from 'rea
 
 import { ROUTES } from 'config/routes';
 
+import FavoritesPage from './pages/FavouritesPage';
 import Header from './pages/Header';
 import RecipesListPage from './pages/RecipesListPage';
 import SingleRecipePage from './pages/SingleRecipePage';
@@ -30,6 +31,7 @@ const App = () => {
       <Routes>
         <Route path={ROUTES.recipes()} element={<Main />}>
           <Route index element={<RecipesListPage />} />
+          <Route path="favorites" element={<FavoritesPage />} />
           <Route path=":id" element={<SingleRecipePage pageType="single" />} />
           <Route path="random/:timestamp" element={<SingleRecipePage pageType="random" />} />
         </Route>

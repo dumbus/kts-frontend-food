@@ -1,7 +1,14 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import { IPaginatedRawRecipesData, IRawRecipeData, IRawSingleRecipeData } from 'types/api';
-import { IRecipeListData, IRecipeListItem, ISingleRecipe, IIngredient, IDirection } from 'types/entities';
+import { IPaginatedRawRecipesData, IRawFavoriteData, IRawRecipeData, IRawSingleRecipeData } from 'types/api';
+import {
+  IRecipeListData,
+  IRecipeListItem,
+  ISingleRecipe,
+  IIngredient,
+  IDirection,
+  IFavoriteItem,
+} from 'types/entities';
 
 import { RECIPES_ON_PAGE } from 'utils/constants';
 import { getClosestFraction, getOffset } from 'utils/helpers';
@@ -53,6 +60,21 @@ class FoodService {
     return paginatedData;
   };
 
+  getFavorites = async (ids: number[]): Promise<IFavoriteItem[]> => {
+    if (!ids.length) {
+      return [];
+    }
+
+    const rawFavorites = await this.getResource<IRawFavoriteData[]>({
+      url: '/informationBulk',
+      params: {
+        ids: ids.join(','),
+      },
+    });
+
+    return this._transformFavouritesData(rawFavorites);
+  };
+
   getRecipeById = async (id: string): Promise<ISingleRecipe> => {
     const rawData = await this.getResource<IRawSingleRecipeData>({
       url: `/${id}/information`,
@@ -101,6 +123,21 @@ class FoodService {
     });
   };
 
+  _transformFavouritesData = (rawFavoriteData: IRawFavoriteData[]): IFavoriteItem[] => {
+    return rawFavoriteData.map((rawFavorite) => {
+      const ingredients = rawFavorite.extendedIngredients.map((ingredient) => ingredient.name);
+
+      return {
+        id: rawFavorite.id,
+        title: rawFavorite.title || 'No information about Title',
+        imageSrc: rawFavorite.image || '',
+        cookingMinutes: rawFavorite.cookingMinutes || 0,
+        ingredients: ingredients,
+        dishTypes: rawFavorite.dishTypes || [],
+      };
+    });
+  };
+
   _transformSingleRecipeData = (rawRecipeData: IRawSingleRecipeData): ISingleRecipe => {
     const recipeData: ISingleRecipe = {
       title: rawRecipeData.title || 'No information about Title',
@@ -125,7 +162,7 @@ class FoodService {
       return currentIngredient;
     });
 
-    rawRecipeData.analyzedInstructions[0].steps.forEach(({ number, step, equipment }) => {
+    rawRecipeData.analyzedInstructions[0]?.steps.forEach(({ number, step, equipment }) => {
       const currentInstruction = {
         number,
         step,

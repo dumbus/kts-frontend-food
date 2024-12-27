@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 
 import Button from 'components/Button';
 import Card from 'components/Card';
+import NothingFound from 'components/NothingFound';
+import AlarmClockIcon from 'components/icons/AlarmClockIcon';
 
 import { ROUTES } from 'config/routes';
 import { IRecipeListItem } from 'types/entities';
-import AlarmClockIcon from '../AlarmClockIcon';
-import EmptyList from '../EmptyList';
 
 import styles from './RecipesList.module.scss';
 
@@ -59,7 +59,7 @@ const RecipesList: React.FC<RecipesListProps> = ({ recipesList }) => {
     [styles['recipes-list__empty']]: isEmpty,
   });
 
-  return <div className={className}>{isEmpty ? <EmptyList /> : cards}</div>;
+  return <div className={className}>{isEmpty ? <NothingFound withImage /> : cards}</div>;
 };
 
 export default RecipesList;

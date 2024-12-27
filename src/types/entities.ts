@@ -12,6 +12,15 @@ export interface IRecipeListItem {
   nutrition: number;
 }
 
+export interface IFavoriteItem {
+  id: number;
+  title: string;
+  imageSrc: string;
+  cookingMinutes: number;
+  ingredients: string[];
+  dishTypes: string[];
+}
+
 export interface ISingleRecipe {
   title: string;
   image: string;

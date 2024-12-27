@@ -1,0 +1,167 @@
+import { IRawFavoriteData } from 'types/api';
+
+export const getTestFavourites = () => {
+  const testFavourites: IRawFavoriteData[] = [
+    {
+      id: 1,
+      title: 'Spaghetti Carbonara',
+      image: '',
+      cookingMinutes: 20,
+      dishTypes: ['main course', 'main course', 'main course', 'main course', 'main course', 'main course'],
+      extendedIngredients: [
+        { name: 'spaghetti', amount: 100, unit: 'g' },
+        { name: 'bacon', amount: 50, unit: 'g' },
+        { name: 'parmesan cheese', amount: 30, unit: 'g' },
+        { name: 'egg yolks', amount: 2, unit: 'pcs' },
+      ],
+    },
+    {
+      id: 2,
+      title: 'Chicken Caesar Salad',
+      image: '',
+      cookingMinutes: 15,
+      dishTypes: ['salad', 'main course'],
+      extendedIngredients: [
+        { name: 'chicken breast', amount: 200, unit: 'g' },
+        { name: 'romaine lettuce', amount: 100, unit: 'g' },
+        { name: 'croutons', amount: 50, unit: 'g' },
+        { name: 'Caesar dressing', amount: 30, unit: 'ml' },
+      ],
+    },
+    {
+      id: 3,
+      title: 'Vegetable Stir Fry',
+      image: '',
+      cookingMinutes: 10,
+      dishTypes: ['side dish'],
+      extendedIngredients: [
+        { name: 'broccoli', amount: 100, unit: 'g' },
+        { name: 'carrot', amount: 50, unit: 'g' },
+        { name: 'red bell pepper', amount: 50, unit: 'g' },
+        { name: 'soy sauce', amount: 20, unit: 'ml' },
+      ],
+    },
+    {
+      id: 4,
+      title: 'Beef Tacos',
+      image: '',
+      cookingMinutes: 25,
+      dishTypes: ['main course', 'fingerfood'],
+      extendedIngredients: [
+        { name: 'ground beef', amount: 200, unit: 'g' },
+        { name: 'taco seasoning', amount: 1, unit: 'tbsp' },
+        { name: 'tortillas', amount: 3, unit: 'pcs' },
+        { name: 'cheddar cheese', amount: 50, unit: 'g' },
+      ],
+    },
+    {
+      id: 5,
+      title: 'Margherita Pizza',
+      image: '',
+      cookingMinutes: 15,
+      dishTypes: ['main course', 'fingerfood'],
+      extendedIngredients: [
+        { name: 'pizza dough', amount: 200, unit: 'g' },
+        { name: 'tomato sauce', amount: 100, unit: 'ml' },
+        { name: 'mozzarella cheese', amount: 100, unit: 'g' },
+        { name: 'fresh basil', amount: 5, unit: 'g' },
+      ],
+    },
+    {
+      id: 6,
+      title: 'Chocolate Chip Cookies',
+      image: '',
+      cookingMinutes: 10,
+      dishTypes: ['dessert'],
+      extendedIngredients: [
+        { name: 'all-purpose flour', amount: 120, unit: 'g' },
+        { name: 'sugar', amount: 50, unit: 'g' },
+        { name: 'butter', amount: 60, unit: 'g' },
+        { name: 'chocolate chips', amount: 100, unit: 'g' },
+      ],
+    },
+    {
+      id: 7,
+      title: 'Greek Salad',
+      image: '',
+      cookingMinutes: 10,
+      dishTypes: ['salad'],
+      extendedIngredients: [
+        { name: 'cucumber', amount: 100, unit: 'g' },
+        { name: 'tomato', amount: 80, unit: 'g' },
+        { name: 'feta cheese', amount: 50, unit: 'g' },
+        { name: 'olives', amount: 30, unit: 'g' },
+      ],
+    },
+    {
+      id: 8,
+      title: 'Pancakes',
+      image: '',
+      cookingMinutes: 15,
+      dishTypes: ['breakfast', 'dessert'],
+      extendedIngredients: [
+        { name: 'flour', amount: 100, unit: 'g' },
+        { name: 'milk', amount: 200, unit: 'ml' },
+        { name: 'egg', amount: 1, unit: 'pcs' },
+        { name: 'butter', amount: 10, unit: 'g' },
+      ],
+    },
+    {
+      id: 9,
+      title: 'Tomato Basil Soup',
+      image: '',
+      cookingMinutes: 30,
+      dishTypes: ['soup'],
+      extendedIngredients: [
+        { name: 'tomatoes', amount: 400, unit: 'g' },
+        { name: 'basil', amount: 10, unit: 'g' },
+        { name: 'onion', amount: 50, unit: 'g' },
+        { name: 'garlic', amount: 5, unit: 'g' },
+      ],
+    },
+    {
+      id: 10,
+      title: 'Pasta Primavera',
+      image: '',
+      cookingMinutes: 25,
+      dishTypes: ['main course'],
+      extendedIngredients: [
+        { name: 'penne pasta', amount: 150, unit: 'g' },
+        { name: 'cherry tomatoes', amount: 100, unit: 'g' },
+        { name: 'bell pepper', amount: 50, unit: 'g' },
+        { name: 'zucchini', amount: 50, unit: 'g' },
+        { name: 'parmesan cheese', amount: 30, unit: 'g' },
+      ],
+    },
+    {
+      id: 11,
+      title: 'Fish Tacos',
+      image: '',
+      cookingMinutes: 20,
+      dishTypes: ['main course', 'fingerfood'],
+      extendedIngredients: [
+        { name: 'white fish fillets', amount: 150, unit: 'g' },
+        { name: 'corn tortillas', amount: 3, unit: 'pcs' },
+        { name: 'avocado', amount: 50, unit: 'g' },
+        { name: 'lime', amount: 1, unit: 'pcs' },
+        { name: 'cabbage', amount: 50, unit: 'g' },
+      ],
+    },
+    {
+      id: 12,
+      title: 'Chicken Fried Rice',
+      image: '',
+      cookingMinutes: 20,
+      dishTypes: ['main course'],
+      extendedIngredients: [
+        { name: 'chicken breast', amount: 150, unit: 'g' },
+        { name: 'cooked rice', amount: 200, unit: 'g' },
+        { name: 'peas', amount: 50, unit: 'g' },
+        { name: 'carrot', amount: 50, unit: 'g' },
+        { name: 'soy sauce', amount: 30, unit: 'ml' },
+      ],
+    },
+  ];
+
+  return testFavourites;
+};

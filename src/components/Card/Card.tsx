@@ -61,7 +61,7 @@ const Card: React.FC<CardProps> = ({
           <Text className={styles['card-title']} tag="h3" view="p-20" maxLines={2} weight="medium">
             {title}
           </Text>
-          <Text className={styles['card-subtitle']} view="p-16" color="secondary" maxLines={3}>
+          <Text className={styles['card-subtitle']} tag="div" view="p-16" color="secondary" maxLines={3}>
             {subtitle}
           </Text>
         </div>

@@ -1,0 +1,18 @@
+@use "../../../styles/variables" as *;
+
+.favorites {
+  padding: 0 $container-padding $space-xxl $container-padding;
+  position: relative;
+
+  &__error {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

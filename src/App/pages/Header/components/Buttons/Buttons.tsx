@@ -21,9 +21,11 @@ const Buttons = () => {
         </div>
       </Link>
 
-      <div className={styles['buttons__button']}>
-        <HeartIcon />
-      </div>
+      <Link to={ROUTES.favorites()}>
+        <div className={styles['buttons__button']}>
+          <HeartIcon />
+        </div>
+      </Link>
 
       <div className={styles['buttons__button']}>
         <PersonIcon />
