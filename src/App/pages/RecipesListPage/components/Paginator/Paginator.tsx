@@ -57,31 +57,33 @@ const Paginator: React.FC<PaginatorProps> = ({ pages }) => {
 
   return (
     <div className={styles['paginator']}>
-      <div className={styles['paginator__container']}>
-        <SmallButton onClick={() => onPageSwitch(page - 1)} disabled={page <= 1}>
-          <ArrowSideIcon color={page === 1 ? 'secondary' : 'primary'} side="left" />
-        </SmallButton>
+      {pages > 0 && (
+        <div className={styles['paginator__container']}>
+          <SmallButton onClick={() => onPageSwitch(page - 1)} disabled={page <= 1}>
+            <ArrowSideIcon color={page === 1 ? 'secondary' : 'primary'} side="left" />
+          </SmallButton>
 
-        {page > 3 && pages > 5 && (
-          <div className={styles['paginator__limit']}>
-            <SmallButton onClick={() => onPageSwitch(1)}>1</SmallButton>
-            <div className={styles['paginator__dots']}>...</div>
-          </div>
-        )}
+          {page > 3 && pages > 5 && (
+            <div className={styles['paginator__limit']}>
+              <SmallButton onClick={() => onPageSwitch(1)}>1</SmallButton>
+              <div className={styles['paginator__dots']}>...</div>
+            </div>
+          )}
 
-        {renderCenterButtons(page, pages)}
+          {renderCenterButtons(page, pages)}
 
-        {page < pages - 2 && pages > 5 && (
-          <div className={styles['paginator__limit']}>
-            <div className={styles['paginator__dots']}>...</div>
-            <SmallButton onClick={() => onPageSwitch(pages)}>{pages}</SmallButton>
-          </div>
-        )}
+          {page < pages - 2 && pages > 5 && (
+            <div className={styles['paginator__limit']}>
+              <div className={styles['paginator__dots']}>...</div>
+              <SmallButton onClick={() => onPageSwitch(pages)}>{pages}</SmallButton>
+            </div>
+          )}
 
-        <SmallButton onClick={() => onPageSwitch(page + 1)} disabled={page >= pages}>
-          <ArrowSideIcon color={page === pages ? 'secondary' : 'primary'} side="right" />
-        </SmallButton>
-      </div>
+          <SmallButton onClick={() => onPageSwitch(page + 1)} disabled={page >= pages}>
+            <ArrowSideIcon color={page === pages ? 'secondary' : 'primary'} side="right" />
+          </SmallButton>
+        </div>
+      )}
     </div>
   );
 };

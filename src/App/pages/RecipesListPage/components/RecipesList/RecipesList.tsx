@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -7,6 +8,7 @@ import Card from 'components/Card';
 import { ROUTES } from 'config/routes';
 import { IRecipeListItem } from 'types/entities';
 import AlarmClockIcon from '../AlarmClockIcon';
+import EmptyList from '../EmptyList';
 
 import styles from './RecipesList.module.scss';
 
@@ -51,8 +53,13 @@ const RecipesList: React.FC<RecipesListProps> = ({ recipesList }) => {
   };
 
   const cards = renderCards(recipesList);
+  const isEmpty = !cards.length;
 
-  return <div className={styles['recipes-list__items']}>{cards}</div>;
+  const className = classNames(styles['recipes-list__items'], {
+    [styles['recipes-list__empty']]: isEmpty,
+  });
+
+  return <div className={className}>{isEmpty ? <EmptyList /> : cards}</div>;
 };
 
 export default RecipesList;
