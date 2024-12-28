@@ -1,8 +1,7 @@
 @use "../../../styles/variables" as *;
 
 .single-recipe {
-  // TODO: fix top padding (problem with header)
-  padding: $space-xh $container-padding;
+  padding: calc($space-xxh + $space-xh) $container-padding $space-xh $container-padding;
 
   &__error {
     display: flex;

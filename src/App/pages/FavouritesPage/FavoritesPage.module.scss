@@ -1,7 +1,7 @@
 @use "../../../styles/variables" as *;
 
 .favorites {
-  padding: 0 $container-padding $space-xxl $container-padding;
+  padding: $space-xxh $container-padding $space-xxl $container-padding;
   position: relative;
 
   &__error {
