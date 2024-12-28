@@ -31,3 +31,10 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 576px) {
+  .small-button {
+    width: 30px;
+    height: 40px;
+  }
+}

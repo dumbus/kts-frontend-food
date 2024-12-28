@@ -31,7 +31,9 @@
 }
 
 @media (max-width: 992px) {
-  .recipes-list__items {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  .recipes-list {
+    &__items {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
   }
 }

@@ -23,14 +23,12 @@
 }
 
 @media (max-width: 576px) {
-  .supplies {
-    &__title {
-      padding: 0 $space-xl;
-    }
-  }
-
   .supplies-list {
     grid-template-columns: 1fr;
     padding: 0 $space-xl;
+
+    &__title {
+      padding: 0 $space-xl;
+    }
   }
 }

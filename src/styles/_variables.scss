@@ -29,20 +29,3 @@ $container-padding: 100px;
 $container-padding-l: 50px;
 $container-padding-m: 30px;
 $container-padding-s: 10px;
-
-// Large devices (desktops)
-@media (max-width: 1200px) {
-  $container-padding: 50px;
-}
-
-// Medium devices (tablets)
-@media (max-width: 992px) {
-}
-
-// Small devices (landscape phones)
-@media (max-width: 768px) {
-}
-
-// Extra Small devices (phones)
-@media (max-width: 576px) {
-}

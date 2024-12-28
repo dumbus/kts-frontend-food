@@ -58,6 +58,7 @@
 @media (max-width: 768px) {
   .single-recipe {
     padding-top: calc($space-xxh + $space-m);
+
     &__supplies {
       margin-top: $space-xl;
     }
