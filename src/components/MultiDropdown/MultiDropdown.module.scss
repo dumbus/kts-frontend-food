@@ -20,10 +20,15 @@
 .multi-dropdown-option {
   padding: $space-s $space-xs;
   cursor: pointer;
+  transition: color 100ms linear;
 }
 
 .multi-dropdown-option:hover {
   color: $color-text-secondary;
+}
+
+.multi-dropdown-option:active {
+  color: $color-text-primary;
 }
 
 .multi-dropdown-option.selected {

@@ -21,7 +21,7 @@ const useSearchQuery = () => {
             rootStore.query.setReload(false);
           });
 
-          navigate(newUrl);
+          navigate(newUrl, { state: { noTransition: true } });
         } else {
           window.history.replaceState({}, '', newUrl);
         }

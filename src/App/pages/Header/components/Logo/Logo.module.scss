@@ -4,6 +4,7 @@
   display: flex;
   gap: $space-l;
   cursor: pointer;
+  transition: all 100ms linear;
 
   &__text {
     display: flex;
@@ -11,6 +12,11 @@
   }
 
   &:hover {
+    transform: scale(1.1);
     color: $color-brand;
+  }
+
+  &:active {
+    color: $color-brand-active;
   }
 }

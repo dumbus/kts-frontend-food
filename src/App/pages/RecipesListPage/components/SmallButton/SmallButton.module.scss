@@ -10,6 +10,7 @@
   background-color: transparent;
   color: $color-text-primary;
   cursor: pointer;
+  transition: background-color 100ms linear;
 
   &:hover {
     background-color: $color-brand-hover;

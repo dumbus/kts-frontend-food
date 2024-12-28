@@ -7,9 +7,14 @@
   &__item {
     color: $color-text-primary;
     cursor: pointer;
+    transition: color 100ms linear;
 
     &:hover {
       color: $color-brand-hover;
+    }
+
+    &:active {
+      color: $color-brand-active;
     }
 
     &-active {

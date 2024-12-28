@@ -14,9 +14,15 @@ import 'styles/styles.scss';
 const Main = () => {
   const location = useLocation();
 
+  const needTransition = location.state?.noTransition !== true;
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
+    if (needTransition) {
+      window.scrollTo({ top: 0, left: 0 });
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }
+  }, [location, needTransition]);
 
   return (
     <div>

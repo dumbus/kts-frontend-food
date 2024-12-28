@@ -7,11 +7,11 @@
   gap: $space-xxs;
   height: 64px;
   padding: 0 $container-padding;
-
   background-color: $color-white;
 
   &__link {
     cursor: pointer;
+    transition: color 100ms linear;
 
     &:hover {
       color: $color-brand-hover;
