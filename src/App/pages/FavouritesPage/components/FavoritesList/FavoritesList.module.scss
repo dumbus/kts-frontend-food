@@ -18,12 +18,6 @@
     margin: 0 auto;
   }
 
-  &__subtitle {
-    display: flex;
-    flex-direction: column;
-    gap: $space-xxs;
-  }
-
   &__caption-slot {
     position: relative;
     display: flex;

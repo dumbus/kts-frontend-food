@@ -55,6 +55,7 @@ class FoodService {
         type: type,
       },
     });
+
     const paginatedData = this._transfrormPaginatedRecipesData(rawData);
 
     return paginatedData;
@@ -116,9 +117,10 @@ class FoodService {
         id: rawRecipe.id,
         title: rawRecipe.title || 'No information about Title',
         imageSrc: rawRecipe.image || '',
-        cookingMinutes: rawRecipe.cookingMinutes || 0,
+        readyInMinutes: rawRecipe.readyInMinutes || 0,
         nutrition: calories,
         ingredients: rawRecipe.nutrition.ingredients.map((ingredient) => ingredient.name),
+        dishTypes: rawRecipe.dishTypes || [],
       };
     });
   };
@@ -131,9 +133,8 @@ class FoodService {
         id: rawFavorite.id,
         title: rawFavorite.title || 'No information about Title',
         imageSrc: rawFavorite.image || '',
-        cookingMinutes: rawFavorite.cookingMinutes || 0,
+        readyInMinutes: rawFavorite.readyInMinutes || 0,
         ingredients: ingredients,
-        dishTypes: rawFavorite.dishTypes || [],
       };
     });
   };

@@ -5,8 +5,8 @@ let testFavourites: IRawFavoriteData[] = [
     id: 1,
     title: 'Spaghetti Carbonara',
     image: '',
-    cookingMinutes: 20,
-    dishTypes: ['main course', 'main course', 'main course', 'main course', 'main course', 'main course'],
+    readyInMinutes: 20,
+
     extendedIngredients: [
       { name: 'spaghetti', amount: 100, unit: 'g' },
       { name: 'bacon', amount: 50, unit: 'g' },
@@ -18,8 +18,8 @@ let testFavourites: IRawFavoriteData[] = [
     id: 2,
     title: 'Chicken Caesar Salad',
     image: '',
-    cookingMinutes: 15,
-    dishTypes: ['salad', 'main course'],
+    readyInMinutes: 15,
+
     extendedIngredients: [
       { name: 'chicken breast', amount: 200, unit: 'g' },
       { name: 'romaine lettuce', amount: 100, unit: 'g' },
@@ -31,8 +31,8 @@ let testFavourites: IRawFavoriteData[] = [
     id: 3,
     title: 'Vegetable Stir Fry',
     image: '',
-    cookingMinutes: 10,
-    dishTypes: ['side dish'],
+    readyInMinutes: 10,
+
     extendedIngredients: [
       { name: 'broccoli', amount: 100, unit: 'g' },
       { name: 'carrot', amount: 50, unit: 'g' },
@@ -44,8 +44,8 @@ let testFavourites: IRawFavoriteData[] = [
     id: 4,
     title: 'Beef Tacos',
     image: '',
-    cookingMinutes: 25,
-    dishTypes: ['main course', 'fingerfood'],
+    readyInMinutes: 25,
+
     extendedIngredients: [
       { name: 'ground beef', amount: 200, unit: 'g' },
       { name: 'taco seasoning', amount: 1, unit: 'tbsp' },

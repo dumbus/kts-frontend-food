@@ -11,17 +11,17 @@ export interface IRawRecipeData {
   id: number;
   title: string;
   image: string;
-  cookingMinutes: number;
+  readyInMinutes: number;
   nutrition: INutrition;
+  dishTypes: string[];
 }
 
 export interface IRawFavoriteData {
   id: number;
   title: string;
   image: string;
-  cookingMinutes: number;
+  readyInMinutes: number;
   extendedIngredients: IIngredient[];
-  dishTypes: string[];
 }
 
 export interface IRawSingleRecipeData {

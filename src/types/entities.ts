@@ -7,18 +7,18 @@ export interface IRecipeListItem {
   id: number;
   title: string;
   imageSrc: string;
-  cookingMinutes: number;
+  readyInMinutes: number;
   ingredients: string[];
   nutrition: number;
+  dishTypes: string[];
 }
 
 export interface IFavoriteItem {
   id: number;
   title: string;
   imageSrc: string;
-  cookingMinutes: number;
+  readyInMinutes: number;
   ingredients: string[];
-  dishTypes: string[];
 }
 
 export interface ISingleRecipe {

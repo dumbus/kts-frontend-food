@@ -6,7 +6,8 @@ export const getTestRecipes = () => {
       id: 1,
       title: 'Spaghetti Carbonara',
       image: '',
-      cookingMinutes: 20,
+      readyInMinutes: 20,
+      dishTypes: ['main course', 'main course', 'main course', 'main course', 'main course', 'main course'],
       nutrition: {
         nutrients: [
           { name: 'Calories', amount: 477.24 },
@@ -26,7 +27,9 @@ export const getTestRecipes = () => {
       id: 2,
       title: 'Chicken Caesar Salad',
       image: '',
-      cookingMinutes: 15,
+      readyInMinutes: 15,
+      dishTypes: ['salad', 'main course'],
+
       nutrition: {
         nutrients: [
           { name: 'Calories', amount: 350 },
@@ -46,7 +49,8 @@ export const getTestRecipes = () => {
       id: 3,
       title: 'Vegetable Stir Fry',
       image: '',
-      cookingMinutes: 10,
+      readyInMinutes: 10,
+      dishTypes: ['side dish'],
       nutrition: {
         nutrients: [
           { name: 'Calories', amount: 250 },
@@ -66,7 +70,8 @@ export const getTestRecipes = () => {
       id: 4,
       title: 'Beef Tacos',
       image: '',
-      cookingMinutes: 25,
+      readyInMinutes: 25,
+      dishTypes: ['main course', 'fingerfood'],
       nutrition: {
         nutrients: [
           { name: 'Calories', amount: 390 },
@@ -86,7 +91,8 @@ export const getTestRecipes = () => {
       id: 5,
       title: 'Margherita Pizza',
       image: '',
-      cookingMinutes: 15,
+      readyInMinutes: 15,
+      dishTypes: ['main course', 'fingerfood'],
       nutrition: {
         nutrients: [
           { name: 'Calories', amount: 250 },
@@ -106,7 +112,8 @@ export const getTestRecipes = () => {
       id: 6,
       title: 'Chocolate Chip Cookies',
       image: '',
-      cookingMinutes: 10,
+      readyInMinutes: 10,
+      dishTypes: ['main course', 'fingerfood'],
       nutrition: {
         nutrients: [
           { name: 'Calories', amount: 150 },
@@ -126,7 +133,8 @@ export const getTestRecipes = () => {
       id: 7,
       title: 'Greek Salad',
       image: '',
-      cookingMinutes: 10,
+      readyInMinutes: 10,
+      dishTypes: ['main course', 'fingerfood'],
       nutrition: {
         nutrients: [
           { name: 'Calories', amount: 120 },
@@ -146,7 +154,8 @@ export const getTestRecipes = () => {
       id: 8,
       title: 'Pancakes',
       image: '',
-      cookingMinutes: 15,
+      readyInMinutes: 15,
+      dishTypes: ['main course', 'fingerfood'],
       nutrition: {
         nutrients: [
           { name: 'Calories', amount: 200 },
@@ -166,7 +175,8 @@ export const getTestRecipes = () => {
       id: 9,
       title: 'Tomato Basil Soup',
       image: '',
-      cookingMinutes: 30,
+      readyInMinutes: 30,
+      dishTypes: ['main course', 'fingerfood'],
       nutrition: {
         nutrients: [
           { name: 'Calories', amount: 150 },
@@ -186,7 +196,8 @@ export const getTestRecipes = () => {
       id: 10,
       title: 'Pasta Primavera',
       image: '',
-      cookingMinutes: 25,
+      readyInMinutes: 25,
+      dishTypes: ['main course', 'fingerfood'],
       nutrition: {
         nutrients: [
           { name: 'Calories', amount: 330 },
@@ -207,7 +218,8 @@ export const getTestRecipes = () => {
       id: 11,
       title: 'Fish Tacos',
       image: '',
-      cookingMinutes: 20,
+      readyInMinutes: 20,
+      dishTypes: ['main course', 'fingerfood'],
       nutrition: {
         nutrients: [
           { name: 'Calories', amount: 280 },
@@ -227,8 +239,9 @@ export const getTestRecipes = () => {
     {
       id: 12,
       title: 'Chicken Fried Rice',
+      dishTypes: ['main course', 'fingerfood'],
       image: '',
-      cookingMinutes: 20,
+      readyInMinutes: 20,
       nutrition: {
         nutrients: [
           { name: 'Calories', amount: 400 },
