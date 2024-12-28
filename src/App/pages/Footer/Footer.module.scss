@@ -1,0 +1,24 @@
+@use "../../../styles/variables" as *;
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-xxs;
+  height: 64px;
+  padding: 0 $container-padding;
+
+  background-color: $color-white;
+
+  &__link {
+    cursor: pointer;
+
+    &:hover {
+      color: $color-brand-hover;
+    }
+
+    &:active {
+      color: $color-brand;
+    }
+  }
+}

@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation } from 'rea
 import { ROUTES } from 'config/routes';
 
 import FavoritesPage from './pages/FavouritesPage';
+import Footer from './pages/Footer';
 import Header from './pages/Header';
 import RecipesListPage from './pages/RecipesListPage';
 import SingleRecipePage from './pages/SingleRecipePage';
@@ -21,6 +22,7 @@ const Main = () => {
     <div>
       <Header />
       <Outlet />
+      <Footer />
     </div>
   );
 };
