@@ -24,6 +24,11 @@ export default class LocalStorageStore {
     if (this._favoritesIds.includes(id)) {
       this._favoritesIds = this._favoritesIds.filter((favoriteId) => favoriteId !== id);
     } else {
+      if (this._favoritesIds.length >= 12) {
+        alert('Sorry, for now you can save only 12 recipes...');
+        return;
+      }
+
       this._favoritesIds.push(id);
     }
 
