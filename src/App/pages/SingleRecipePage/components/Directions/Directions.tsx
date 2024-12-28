@@ -1,6 +1,8 @@
 import React from 'react';
 
+import NothingFound from 'components/NothingFound';
 import Text from 'components/Text';
+
 import { IDirection } from 'types/entities';
 
 import styles from './Directions.module.scss';
@@ -26,6 +28,7 @@ const Directions: React.FC<DirectionsProps> = ({ directions }) => {
   };
 
   const list = renderList(directions);
+  const isEmpty = !list.length;
 
   return (
     <div className={styles['directions']}>
@@ -33,7 +36,7 @@ const Directions: React.FC<DirectionsProps> = ({ directions }) => {
         Directions
       </Text>
 
-      <div className={styles['directions__list']}>{list}</div>
+      <div className={styles['directions__list']}>{isEmpty ? <NothingFound /> : list}</div>
     </div>
   );
 };

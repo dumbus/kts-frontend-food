@@ -8,7 +8,7 @@ interface NothingFoundProps {
   withImage?: boolean;
 }
 
-const NothingFound: React.FC<NothingFoundProps> = ({ withImage = 'false' }) => {
+const NothingFound: React.FC<NothingFoundProps> = ({ withImage = false }) => {
   return (
     <div className={styles['nothing-found']}>
       {withImage && <img src={emptyImg} alt="nothing found image" />}

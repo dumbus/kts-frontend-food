@@ -1,5 +1,7 @@
+import classNames from 'classnames';
 import React from 'react';
 
+import NothingFound from 'components/NothingFound';
 import Text from 'components/Text';
 
 import { getCapitalizedWord } from 'utils/helpers';
@@ -18,7 +20,7 @@ const Supplies: React.FC<SuppliesProps> = ({ type, items }) => {
   const renderList = (items: string[]) => {
     const list = items.map((item, idx) => {
       return (
-        <div key={idx} className={styles['supplies__item']}>
+        <div key={idx} className={styles['supplies-list__item']}>
           {type === 'ingredients' ? <DishIcon /> : <LadleIcon />}
           <Text tag="div" view="p-16" maxLines={1}>
             {item}
@@ -31,6 +33,7 @@ const Supplies: React.FC<SuppliesProps> = ({ type, items }) => {
   };
 
   const list = renderList(items);
+  const isEmpty = !list.length;
 
   return (
     <div className={styles['supplies']}>
@@ -38,7 +41,13 @@ const Supplies: React.FC<SuppliesProps> = ({ type, items }) => {
         {getCapitalizedWord(type)}
       </Text>
 
-      <div className={styles['supplies__list']}>{list}</div>
+      <div
+        className={classNames(styles['supplies-list'], {
+          [styles['supplies-list__empty']]: isEmpty,
+        })}
+      >
+        {isEmpty ? <NothingFound /> : list}
+      </div>
     </div>
   );
 };
