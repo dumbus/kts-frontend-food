@@ -1,7 +1,10 @@
 import classNames from 'classnames';
+// import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 
 import imageTemplate from 'assets/recipe-image-template.jpg';
+
+import HeartIcon from 'components/icons/HeartIcon';
 
 import Text from '../Text';
 
@@ -24,6 +27,8 @@ type CardProps = {
   onClick?: React.MouseEventHandler;
   /** Слот для действия */
   actionSlot?: React.ReactNode;
+  /** Наличие или отсутствие лайка */
+  isLiked?: boolean;
 };
 
 const Card: React.FC<CardProps> = ({
@@ -35,6 +40,7 @@ const Card: React.FC<CardProps> = ({
   contentSlot,
   onClick,
   actionSlot,
+  isLiked = false,
 }) => {
   const [imageSrc, setImageSrc] = useState(image);
 
@@ -46,6 +52,8 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div className={cardClasses} onClick={onClick}>
+      {isLiked && <HeartIcon width={32} height={32} className={styles['card-like']} />}
+
       <div className={styles['card-image-container']}>
         <img src={imageSrc} alt={title?.toString()} className={styles['card-img']} onError={handleImageError} />
       </div>
@@ -78,5 +86,4 @@ const Card: React.FC<CardProps> = ({
     </div>
   );
 };
-
 export default Card;

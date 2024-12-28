@@ -1,3 +1,5 @@
+import classNames from 'classnames';
+
 import emptyImg from 'assets/empty.png';
 
 import Text from 'components/Text';
@@ -9,8 +11,12 @@ interface NothingFoundProps {
 }
 
 const NothingFound: React.FC<NothingFoundProps> = ({ withImage = false }) => {
+  const rootClass = classNames(styles['nothing-found'], {
+    [styles['nothing-found__with-image']]: withImage,
+  });
+
   return (
-    <div className={styles['nothing-found']}>
+    <div className={rootClass}>
       {withImage && <img src={emptyImg} alt="nothing found image" />}
       <Text view="p-20" weight="bold" color="primary">
         Nothing here yet...

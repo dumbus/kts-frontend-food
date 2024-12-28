@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -8,6 +9,9 @@ import NothingFound from 'components/NothingFound';
 import AlarmClockIcon from 'components/icons/AlarmClockIcon';
 
 import { ROUTES } from 'config/routes';
+
+import rootStore from 'store/RootStore';
+
 import { IRecipeListItem } from 'types/entities';
 
 import styles from './RecipesList.module.scss';
@@ -32,7 +36,17 @@ const RecipesList: React.FC<RecipesListProps> = ({ recipesList }) => {
 
       const contentSlot = `${Math.round(nutrition)} kcal`;
 
-      const actionSlot = <Button>Save</Button>;
+      const actionSlot = (
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+
+            rootStore.localStore.toggleFavorite(id);
+          }}
+        >
+          {rootStore.localStore.favoritesIds.includes(id) ? 'Unsave' : 'Save'}
+        </Button>
+      );
 
       return (
         <Link to={ROUTES.recipesDetail(id)} key={id}>
@@ -44,6 +58,7 @@ const RecipesList: React.FC<RecipesListProps> = ({ recipesList }) => {
             subtitle={subtitle}
             contentSlot={contentSlot}
             actionSlot={actionSlot}
+            isLiked={rootStore.localStore.favoritesIds.includes(id)}
           />
         </Link>
       );
@@ -62,4 +77,4 @@ const RecipesList: React.FC<RecipesListProps> = ({ recipesList }) => {
   return <div className={className}>{isEmpty ? <NothingFound withImage /> : cards}</div>;
 };
 
-export default RecipesList;
+export default observer(RecipesList);

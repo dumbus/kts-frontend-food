@@ -1,6 +1,7 @@
 @use "../../styles/variables" as *;
 
 .card {
+  position: relative;
   width: 360px;
   height: 100%;
   border-radius: 10px;
@@ -11,6 +12,12 @@
   &:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
   }
+}
+
+.card-like {
+  position: absolute;
+  top: $space-xxs;
+  left: $space-xxs;
 }
 
 .card-image-container {

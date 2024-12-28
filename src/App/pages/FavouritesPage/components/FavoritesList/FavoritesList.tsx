@@ -1,4 +1,6 @@
 import classNames from 'classnames';
+import { observer } from 'mobx-react-lite';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Button from 'components/Button';
@@ -9,7 +11,11 @@ import Text from 'components/Text';
 import AlarmClockIcon from 'components/icons/AlarmClockIcon';
 
 import { ROUTES } from 'config/routes';
+
+import rootStore from 'store/RootStore';
+
 import { IFavoriteItem } from 'types/entities';
+
 import Labels from '../Labels';
 
 import styles from './FavoritesList.module.scss';
@@ -39,7 +45,17 @@ const FavoritesList: React.FC<FavoritesProps> = ({ favoritesList }) => {
         </div>
       );
 
-      const actionSlot = <Button>Remove</Button>;
+      const actionSlot = (
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+
+            rootStore.localStore.toggleFavorite(id);
+          }}
+        >
+          Unsave
+        </Button>
+      );
 
       return (
         <Link to={ROUTES.recipesDetail(id)} key={id}>
@@ -50,6 +66,7 @@ const FavoritesList: React.FC<FavoritesProps> = ({ favoritesList }) => {
             image={imageSrc}
             subtitle={subtitle}
             actionSlot={actionSlot}
+            isLiked={rootStore.localStore.favoritesIds.includes(id)}
           />
         </Link>
       );
@@ -68,4 +85,4 @@ const FavoritesList: React.FC<FavoritesProps> = ({ favoritesList }) => {
   return <div className={className}>{isEmpty ? <NothingFound withImage /> : cards}</div>;
 };
 
-export default FavoritesList;
+export default observer(FavoritesList);

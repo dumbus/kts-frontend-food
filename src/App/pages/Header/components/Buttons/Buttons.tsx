@@ -4,7 +4,7 @@ import { ROUTES } from 'config/routes';
 
 import { getTimeStamp } from 'utils/helpers';
 
-import HeartIcon from '../HeartIcon';
+import HeartIcon from '../../../../../components/icons/HeartIcon';
 import PersonIcon from '../PersonIcon';
 import RandomIcon from '../RandomIcon';
 
