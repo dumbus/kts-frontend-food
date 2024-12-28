@@ -7,9 +7,18 @@ export interface IRecipeListItem {
   id: number;
   title: string;
   imageSrc: string;
-  cookingMinutes: number;
+  readyInMinutes: number;
   ingredients: string[];
   nutrition: number;
+  dishTypes: string[];
+}
+
+export interface IFavoriteItem {
+  id: number;
+  title: string;
+  imageSrc: string;
+  readyInMinutes: number;
+  ingredients: string[];
 }
 
 export interface ISingleRecipe {
@@ -62,4 +71,6 @@ export interface IQueryParams {
   page?: number;
 }
 
-export type DataType = 'mock' | 'api';
+export type PageType = 'single' | 'random';
+
+export type CurrentPageName = 'recipes' | 'favorites' | 'random';

@@ -4,10 +4,36 @@
   padding: 0 $container-padding $space-xxl $container-padding;
   position: relative;
 
+  &__error {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__loader {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+}
+
+@media (max-width: 1200px) {
+  .recipes-list {
+    padding-left: $container-padding-l;
+    padding-right: $container-padding-l;
+  }
+}
+
+@media (max-width: 992px) {
+  .recipes-list {
+    padding-left: $container-padding-m;
+    padding-right: $container-padding-m;
+  }
+}
+
+@media (max-width: 576px) {
+  .recipes-list {
+    padding-left: $container-padding-s;
+    padding-right: $container-padding-s;
   }
 }

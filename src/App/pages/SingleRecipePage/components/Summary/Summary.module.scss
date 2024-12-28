@@ -11,3 +11,16 @@
     text-decoration: underline;
   }
 }
+
+@media (max-width: 768px) {
+  .summary {
+    margin-top: $space-xxl;
+    padding: $space-xxl;
+  }
+}
+
+@media (max-width: 576px) {
+  .summary {
+    padding: $space-xl;
+  }
+}

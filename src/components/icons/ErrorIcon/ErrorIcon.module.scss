@@ -1,0 +1,9 @@
+@use "../../../styles/variables" as *;
+
+.color-brand {
+  fill: $color-brand;
+}
+
+.color-error {
+  fill: $color-error;
+}

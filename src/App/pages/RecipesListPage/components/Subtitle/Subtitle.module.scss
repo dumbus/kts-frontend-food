@@ -4,3 +4,10 @@
   margin-top: $space-h;
   text-align: center;
 }
+
+@media (max-width: 576px) {
+  .subtitle {
+    margin-top: $space-xl;
+    font-size: 16px;
+  }
+}

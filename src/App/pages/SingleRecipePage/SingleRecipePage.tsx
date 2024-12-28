@@ -3,11 +3,13 @@ import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+import Error from 'components/Error';
 import Loader from 'components/Loader';
 
 import useLocalStore from 'hooks/useLocalStore';
 import SingleRecipeStore from 'store/SingleRecipeStore';
-import { Meta } from 'utils/meta';
+import { PageType } from 'types/entities';
+import { Meta } from 'utils/enums';
 
 import Characteristic from './components/Characteristic';
 import Directions from './components/Directions';
@@ -18,24 +20,29 @@ import Supplies from './components/Supplies';
 
 import styles from './SingleRecipePage.module.scss';
 
-const SingleRecipePage = () => {
+type SingleRecipePageProps = {
+  pageType: PageType;
+};
+
+const SingleRecipePage: React.FC<SingleRecipePageProps> = ({ pageType }) => {
   const singleRecipeStore = useLocalStore(() => new SingleRecipeStore());
 
-  const { id = '' } = useParams();
+  const { id = '', timestamp = '' } = useParams();
 
   useEffect(() => {
-    singleRecipeStore.getRecipesListData(id);
-  }, [singleRecipeStore, id]);
+    singleRecipeStore.getRecipeData(pageType, id);
+  }, [singleRecipeStore, id, pageType, timestamp]);
 
-  const rootClass = classNames('container', styles['single-recipe']);
+  const rootClass = classNames('container', styles['single-recipe'], {
+    [styles['single-recipe__error']]: singleRecipeStore.meta === Meta.error,
+  });
 
   return (
     <div className={rootClass}>
       {singleRecipeStore.meta === Meta.loading && <Loader className={styles['single-recipe__loader']} />}
 
-      {/* Временное решение, пока нет компонента Error: */}
       {singleRecipeStore.meta === Meta.error && (
-        <>Произошла ошибка: {singleRecipeStore.error?.message || 'Неизвестная ошибка'}</>
+        <Error errorMessage={singleRecipeStore.error?.message || 'Unknown error'} />
       )}
 
       {singleRecipeStore.meta === Meta.success && singleRecipeStore.recipe !== null && (

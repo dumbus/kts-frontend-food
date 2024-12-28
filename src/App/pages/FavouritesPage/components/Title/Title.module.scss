@@ -1,0 +1,35 @@
+@use "../../../../../styles/variables" as *;
+
+.title {
+  margin-top: $space-xl;
+  text-align: center;
+  font-size: 36px;
+  font-style: italic;
+}
+
+.subtitle {
+  margin-top: $space-l;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .title {
+    margin-top: $space-l;
+    font-size: 30px;
+  }
+
+  .subtitle {
+    margin-top: $space-m;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .title {
+    margin-top: $space-m;
+  }
+
+  .subtitle {
+    margin-top: $space-s;
+  }
+}

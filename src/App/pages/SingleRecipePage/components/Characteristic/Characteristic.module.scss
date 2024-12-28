@@ -1,3 +1,5 @@
+@use "../../../../../styles/variables" as *;
+
 .characteristic {
   position: relative;
   display: flex;
@@ -6,8 +8,8 @@
   margin-top: 40px;
 
   &__image {
-    width: 448px;
-    height: 298px;
+    width: 450px;
+    height: 300px;
     object-fit: cover;
     border-radius: 10px;
   }
@@ -24,5 +26,55 @@
     flex-direction: column;
     align-items: center;
     gap: 8px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .characteristic {
+    gap: 100px;
+  }
+}
+
+@media (max-width: 992px) {
+  .characteristic {
+    gap: 0;
+    justify-content: space-between;
+
+    &__image {
+      width: 300px;
+      height: 200px;
+    }
+
+    &__list {
+      column-gap: 60px;
+      row-gap: 30px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .characteristic {
+    &__image {
+      width: 200px;
+      height: 200px;
+    }
+
+    &__list {
+      column-gap: $space-xs;
+      row-gap: $space-xxl;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .characteristic {
+    flex-direction: column;
+    margin-top: $space-xxl;
+    gap: $space-xxl;
+
+    &__image {
+      width: 250px;
+      height: 250px;
+    }
   }
 }

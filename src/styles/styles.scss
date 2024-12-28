@@ -26,7 +26,8 @@ pre {
 }
 
 .container {
-  min-height: 100vh;
+  position: relative;
+  min-height: calc(100vh - 64px);
   background-color: $color-bg;
   overflow: hidden;
 }
@@ -34,4 +35,17 @@ pre {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+img {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (max-width: 992px) {
+  .container {
+    min-height: calc(100vh - 48px);
+  }
 }

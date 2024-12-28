@@ -1,10 +1,17 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import { IPaginatedRawRecipesData, IRawRecipeData, IRawSingleRecipeData } from 'types/api';
-import { IRecipeListData, IRecipeListItem, ISingleRecipe, IIngredient, IDirection } from 'types/entities';
+import { IPaginatedRawRecipesData, IRawFavoriteData, IRawRecipeData, IRawSingleRecipeData } from 'types/api';
+import {
+  IRecipeListData,
+  IRecipeListItem,
+  ISingleRecipe,
+  IIngredient,
+  IDirection,
+  IFavoriteItem,
+} from 'types/entities';
 
-import { getClosestFraction } from 'utils/getClosestFraction';
-import { getOffset } from 'utils/getOffset';
+import { RECIPES_ON_PAGE } from 'utils/constants';
+import { getClosestFraction, getOffset } from 'utils/helpers';
 
 class FoodService {
   private _apiClient: AxiosInstance;
@@ -42,15 +49,31 @@ class FoodService {
       params: {
         addRecipeNutrition: true,
         instructionsRequired: true,
-        number: 9,
+        number: RECIPES_ON_PAGE,
         offset: getOffset(page),
         query: search,
         type: type,
       },
     });
+
     const paginatedData = this._transfrormPaginatedRecipesData(rawData);
 
     return paginatedData;
+  };
+
+  getFavorites = async (ids: number[]): Promise<IFavoriteItem[]> => {
+    if (!ids.length) {
+      return [];
+    }
+
+    const rawFavorites = await this.getResource<IRawFavoriteData[]>({
+      url: '/informationBulk',
+      params: {
+        ids: ids.join(','),
+      },
+    });
+
+    return this._transformFavouritesData(rawFavorites);
   };
 
   getRecipeById = async (id: string): Promise<ISingleRecipe> => {
@@ -59,6 +82,18 @@ class FoodService {
     });
     const recipeData = this._transformSingleRecipeData(rawData);
 
+    return recipeData;
+  };
+
+  getRandomRecipe = async (): Promise<ISingleRecipe> => {
+    const rawData = await this.getResource<{ recipes: IRawSingleRecipeData[] }>({
+      url: '/random',
+      params: {
+        number: 1,
+      },
+    });
+
+    const recipeData = this._transformSingleRecipeData(rawData.recipes[0]);
     return recipeData;
   };
 
@@ -81,10 +116,25 @@ class FoodService {
       return {
         id: rawRecipe.id,
         title: rawRecipe.title || 'No information about Title',
-        imageSrc: rawRecipe.image,
-        cookingMinutes: rawRecipe.cookingMinutes || 0,
+        imageSrc: rawRecipe.image || '',
+        readyInMinutes: rawRecipe.readyInMinutes || 0,
         nutrition: calories,
         ingredients: rawRecipe.nutrition.ingredients.map((ingredient) => ingredient.name),
+        dishTypes: rawRecipe.dishTypes || [],
+      };
+    });
+  };
+
+  _transformFavouritesData = (rawFavoriteData: IRawFavoriteData[]): IFavoriteItem[] => {
+    return rawFavoriteData.map((rawFavorite) => {
+      const ingredients = rawFavorite.extendedIngredients.map((ingredient) => ingredient.name);
+
+      return {
+        id: rawFavorite.id,
+        title: rawFavorite.title || 'No information about Title',
+        imageSrc: rawFavorite.image || '',
+        readyInMinutes: rawFavorite.readyInMinutes || 0,
+        ingredients: ingredients,
       };
     });
   };
@@ -92,7 +142,7 @@ class FoodService {
   _transformSingleRecipeData = (rawRecipeData: IRawSingleRecipeData): ISingleRecipe => {
     const recipeData: ISingleRecipe = {
       title: rawRecipeData.title || 'No information about Title',
-      image: rawRecipeData.image,
+      image: rawRecipeData.image || '',
       preparationMinutes: rawRecipeData.preparationMinutes || 0,
       cookingMinutes: rawRecipeData.cookingMinutes || 0,
       totalMinutes: rawRecipeData.preparationMinutes + rawRecipeData.cookingMinutes,
@@ -113,7 +163,7 @@ class FoodService {
       return currentIngredient;
     });
 
-    rawRecipeData.analyzedInstructions[0].steps.forEach(({ number, step, equipment }) => {
+    rawRecipeData.analyzedInstructions[0]?.steps.forEach(({ number, step, equipment }) => {
       const currentInstruction = {
         number,
         step,

@@ -7,14 +7,25 @@
   &__item {
     color: $color-text-primary;
     cursor: pointer;
+    transition: color 100ms linear;
 
     &:hover {
       color: $color-brand-hover;
+    }
+
+    &:active {
+      color: $color-brand-active;
     }
 
     &-active {
       color: $color-brand;
       font-weight: bold;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .menu {
+    display: none;
   }
 }

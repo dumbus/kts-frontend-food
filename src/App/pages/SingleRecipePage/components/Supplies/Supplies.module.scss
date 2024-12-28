@@ -1,12 +1,14 @@
 @use "../../../../../styles/variables" as *;
 
-.supplies {
-  &__list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: $space-xxl;
-    row-gap: $space-xxs;
-    margin-top: $space-xl;
+.supplies-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: $space-xxl;
+  row-gap: $space-xxs;
+  margin-top: $space-xl;
+
+  &__empty {
+    display: block;
   }
 
   &__item {
@@ -16,6 +18,17 @@
 
     svg {
       flex-shrink: 0;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .supplies-list {
+    grid-template-columns: 1fr;
+    padding: 0 $space-xl;
+
+    &__title {
+      padding: 0 $space-xl;
     }
   }
 }

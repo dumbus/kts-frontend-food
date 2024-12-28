@@ -1,0 +1,43 @@
+@use "../../../styles/variables" as *;
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-xxs;
+  height: 64px;
+  padding: 0 $container-padding;
+  background-color: $color-white;
+
+  &__link {
+    cursor: pointer;
+    transition: color 100ms linear;
+
+    &:hover {
+      color: $color-brand-hover;
+    }
+
+    &:active {
+      color: $color-brand;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .footer {
+    padding: 0 $container-padding-l;
+  }
+}
+
+@media (max-width: 992px) {
+  .footer {
+    height: 48px;
+    padding: 0 $container-padding-m;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer {
+    padding: 0 $container-padding-s;
+  }
+}

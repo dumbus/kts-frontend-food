@@ -1,11 +1,35 @@
 @use "../../../styles/variables" as *;
 
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100vw;
   height: 64px;
   padding: 0 $container-padding;
 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   background-color: $color-white;
+  z-index: 1000;
+}
+
+@media (max-width: 1200px) {
+  .header {
+    padding: 0 $container-padding-l;
+  }
+}
+
+@media (max-width: 992px) {
+  .header {
+    height: 48px;
+    padding: 0 $container-padding-m;
+  }
+}
+
+@media (max-width: 576px) {
+  .header {
+    padding: 0 $container-padding-s;
+  }
 }

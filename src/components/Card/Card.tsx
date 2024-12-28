@@ -1,5 +1,9 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { useState } from 'react';
+
+import imageTemplate from 'assets/recipe-image-template.jpg';
+
+import LikeIcon from 'components/icons/LikeIcon';
 
 import Text from '../Text';
 
@@ -22,6 +26,8 @@ type CardProps = {
   onClick?: React.MouseEventHandler;
   /** Слот для действия */
   actionSlot?: React.ReactNode;
+  /** Наличие или отсутствие лайка */
+  isLiked?: boolean;
 };
 
 const Card: React.FC<CardProps> = ({
@@ -33,13 +39,22 @@ const Card: React.FC<CardProps> = ({
   contentSlot,
   onClick,
   actionSlot,
+  isLiked = false,
 }) => {
+  const [imageSrc, setImageSrc] = useState(image);
+
+  const handleImageError = () => {
+    setImageSrc(imageTemplate);
+  };
+
   const cardClasses = classNames(styles['card'], className);
 
   return (
     <div className={cardClasses} onClick={onClick}>
+      {isLiked && <LikeIcon width={48} height={48} className={styles['card-like']} />}
+
       <div className={styles['card-image-container']}>
-        <img src={image} alt={title?.toString()} className={styles['card-img']} />
+        <img src={imageSrc} alt={title?.toString()} className={styles['card-img']} onError={handleImageError} />
       </div>
 
       <div className={styles['card-content']}>
@@ -53,7 +68,7 @@ const Card: React.FC<CardProps> = ({
           <Text className={styles['card-title']} tag="h3" view="p-20" maxLines={2} weight="medium">
             {title}
           </Text>
-          <Text className={styles['card-subtitle']} view="p-16" color="secondary" maxLines={3}>
+          <Text className={styles['card-subtitle']} tag="div" view="p-16" color="secondary" maxLines={3}>
             {subtitle}
           </Text>
         </div>
@@ -70,5 +85,4 @@ const Card: React.FC<CardProps> = ({
     </div>
   );
 };
-
 export default Card;

@@ -5,6 +5,7 @@
   width: 300px;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 
 .multi-dropdown-options {
@@ -19,18 +20,17 @@
 .multi-dropdown-option {
   padding: $space-s $space-xs;
   cursor: pointer;
+  transition: color 100ms linear;
 }
 
 .multi-dropdown-option:hover {
   color: $color-text-secondary;
 }
 
+.multi-dropdown-option:active {
+  color: $color-text-primary;
+}
+
 .multi-dropdown-option.selected {
   color: $color-brand;
 }
-
-/* for screenshot tests (somehow they differ from Storybook) */
-
-// .multi-dropdown-options {
-//   padding-bottom: 8px;
-// }

@@ -1,0 +1,39 @@
+@use "../../../../../styles/variables" as *;
+
+.favorites-list {
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    grid-template-rows: repeat(3, auto);
+    gap: $space-l;
+    justify-content: center;
+    margin: $space-xl auto 0 auto;
+  }
+
+  &__empty {
+    display: flex;
+  }
+
+  &__item {
+    margin: 0 auto;
+  }
+
+  &__caption-slot {
+    position: relative;
+    display: flex;
+    gap: 4px;
+  }
+
+  &__alarm-clock {
+    position: relative;
+    top: 1px;
+  }
+}
+
+@media (max-width: 992px) {
+  .favorites-list {
+    &__items {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+  }
+}

@@ -9,6 +9,7 @@
   border-radius: 10px;
   color: $color-white;
   cursor: pointer;
+  transition: background-color 100ms linear;
 }
 
 .button:hover {

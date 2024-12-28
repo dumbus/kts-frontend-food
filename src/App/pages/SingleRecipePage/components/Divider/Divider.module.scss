@@ -19,3 +19,15 @@
     background-color: $color-brand;
   }
 }
+
+@media (max-width: 992px) {
+  .divider {
+    flex-direction: row;
+    gap: $space-xxs;
+
+    &__line {
+      width: 100%;
+      height: 2px;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@use "../../../../../styles/variables" as *;
+
+.labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-xxs;
+
+  &__item {
+    padding: 5px;
+    border: 1px solid $color-brand;
+    border-radius: 5px;
+    background-color: $color-bg;
+  }
+}

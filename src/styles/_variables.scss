@@ -7,12 +7,12 @@ $color-brand-disabled: #d9d9d9;
 $color-bg: #f7e8d7;
 $color-white: #ffffff;
 $color-grey: #d9d9d9;
+$color-error: #d85c5c;
 
 $color-text-primary: #000000;
 $color-text-secondary: #afadb5;
 $color-text-accent: #b5460f;
-
-$container-padding: 100px;
+$color-text-error: #d85c5c;
 
 $space-xxh: 64px;
 $space-xh: 48px;
@@ -24,3 +24,8 @@ $space-m: 16px;
 $space-s: 14px;
 $space-xs: 12px;
 $space-xxs: 8px;
+
+$container-padding: 100px;
+$container-padding-l: 50px;
+$container-padding-m: 30px;
+$container-padding-s: 10px;

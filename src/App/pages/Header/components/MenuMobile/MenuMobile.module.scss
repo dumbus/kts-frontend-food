@@ -1,0 +1,27 @@
+@use "../../../../../styles/variables" as *;
+
+.menu-mobile {
+  display: none;
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: transform 200ms linear;
+
+    &:active {
+      transform: scale(1.2);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-mobile {
+    display: flex;
+    align-items: center;
+    gap: $space-xxs;
+  }
+}
