@@ -35,3 +35,9 @@
     top: 1px;
   }
 }
+
+@media (max-width: 992px) {
+  .favorites-list__items {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}

@@ -14,3 +14,21 @@
     margin-top: $space-m;
   }
 }
+
+@media (max-width: 768px) {
+  .directions {
+    margin-top: $space-xl;
+  }
+}
+
+@media (max-width: 576px) {
+  .directions {
+    &__title {
+      padding: 0 $space-xl;
+    }
+
+    &__list {
+      padding: 0 $space-xl;
+    }
+  }
+}

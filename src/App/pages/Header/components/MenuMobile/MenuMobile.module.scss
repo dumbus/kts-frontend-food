@@ -1,9 +1,7 @@
 @use "../../../../../styles/variables" as *;
 
 .menu-mobile {
-  display: flex;
-  align-items: center;
-  gap: $space-xxs;
+  display: none;
 
   &__button {
     display: flex;
@@ -17,5 +15,13 @@
     &:active {
       transform: scale(1.2);
     }
+  }
+}
+
+@media (max-width: 576px) {
+  .menu-mobile {
+    display: flex;
+    align-items: center;
+    gap: $space-xxs;
   }
 }

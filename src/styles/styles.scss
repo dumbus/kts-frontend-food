@@ -43,3 +43,9 @@ img {
   -ms-user-select: none;
   user-select: none;
 }
+
+@media (max-width: 992px) {
+  .container {
+    min-height: calc(100vh - 48px);
+  }
+}

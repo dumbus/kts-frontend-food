@@ -32,7 +32,7 @@ const Directions: React.FC<DirectionsProps> = ({ directions }) => {
 
   return (
     <div className={styles['directions']}>
-      <Text view="p-20" tag="h2">
+      <Text className={styles['directions__title']} view="p-20" tag="h2">
         Directions
       </Text>
 

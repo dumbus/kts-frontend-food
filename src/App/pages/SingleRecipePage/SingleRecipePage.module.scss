@@ -28,3 +28,50 @@
     align-self: stretch;
   }
 }
+
+@media (max-width: 1200px) {
+  .single-recipe {
+    padding-left: $container-padding-l;
+    padding-right: $container-padding-l;
+  }
+}
+
+@media (max-width: 992px) {
+  .single-recipe {
+    padding-top: calc($space-xxh + $space-xl);
+    padding-left: $container-padding-m;
+    padding-right: $container-padding-m;
+
+    &__supplies {
+      display: flex;
+      flex-direction: column;
+      gap: $space-xl;
+    }
+
+    &__divider {
+      width: 100%;
+      align-self: center;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .single-recipe {
+    padding-top: calc($space-xxh + $space-m);
+    &__supplies {
+      margin-top: $space-xl;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .single-recipe {
+    padding-top: $space-xxh;
+    padding-left: $container-padding-s;
+    padding-right: $container-padding-s;
+
+    &__divider {
+      padding: 0 $space-xl;
+    }
+  }
+}

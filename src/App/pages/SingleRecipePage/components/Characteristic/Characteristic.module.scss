@@ -1,3 +1,5 @@
+@use "../../../../../styles/variables" as *;
+
 .characteristic {
   position: relative;
   display: flex;
@@ -24,5 +26,30 @@
     flex-direction: column;
     align-items: center;
     gap: 8px;
+  }
+}
+
+@media (max-width: 992px) {
+  .characteristic {
+    gap: 100px;
+  }
+}
+
+@media (max-width: 576px) {
+  .characteristic {
+    flex-direction: column;
+    gap: $space-xxl;
+    margin-top: $space-xxl;
+
+    &__image {
+      width: 250px;
+      height: 250px;
+    }
+
+    &__list {
+      grid-template-columns: repeat(3, auto);
+      column-gap: $space-xs;
+      row-gap: $space-xxl;
+    }
   }
 }

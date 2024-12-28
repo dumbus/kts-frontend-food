@@ -37,7 +37,7 @@ const Supplies: React.FC<SuppliesProps> = ({ type, items }) => {
 
   return (
     <div className={styles['supplies']}>
-      <Text tag="h2" view="p-20" maxLines={1}>
+      <Text className={styles['supplies__title']} tag="h2" view="p-20" maxLines={1}>
         {getCapitalizedWord(type)}
       </Text>
 

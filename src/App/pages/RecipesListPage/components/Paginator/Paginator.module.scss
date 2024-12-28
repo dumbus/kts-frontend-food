@@ -21,3 +21,9 @@
     height: 42px;
   }
 }
+
+@media (max-width: 576px) {
+  .paginator {
+    margin-top: $space-xl;
+  }
+}

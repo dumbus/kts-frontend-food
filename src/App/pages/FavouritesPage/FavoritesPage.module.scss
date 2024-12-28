@@ -16,3 +16,24 @@
     transform: translate(-50%, -50%);
   }
 }
+
+@media (max-width: 1200px) {
+  .favorites {
+    padding-left: $container-padding-l;
+    padding-right: $container-padding-l;
+  }
+}
+
+@media (max-width: 992px) {
+  .favorites {
+    padding-left: $container-padding-m;
+    padding-right: $container-padding-m;
+  }
+}
+
+@media (max-width: 576px) {
+  .favorites {
+    padding-left: $container-padding-s;
+    padding-right: $container-padding-s;
+  }
+}

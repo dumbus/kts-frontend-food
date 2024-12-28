@@ -25,3 +25,32 @@
     z-index: 100;
   }
 }
+
+@media (max-width: 1200px) {
+  .header {
+    left: -$container-padding-l;
+    height: 400px;
+  }
+}
+
+@media (max-width: 992px) {
+  .header {
+    left: -$container-padding-m;
+    height: 350px;
+
+    &__title {
+      height: 150px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .header {
+    left: -$container-padding-s;
+    height: 250px;
+
+    &__title {
+      height: 100px;
+    }
+  }
+}

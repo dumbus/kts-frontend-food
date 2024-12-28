@@ -14,8 +14,6 @@ $color-text-secondary: #afadb5;
 $color-text-accent: #b5460f;
 $color-text-error: #d85c5c;
 
-$container-padding: 100px;
-
 $space-xxh: 64px;
 $space-xh: 48px;
 $space-h: 36px;
@@ -26,3 +24,25 @@ $space-m: 16px;
 $space-s: 14px;
 $space-xs: 12px;
 $space-xxs: 8px;
+
+$container-padding: 100px;
+$container-padding-l: 50px;
+$container-padding-m: 30px;
+$container-padding-s: 10px;
+
+// Large devices (desktops)
+@media (max-width: 1200px) {
+  $container-padding: 50px;
+}
+
+// Medium devices (tablets)
+@media (max-width: 992px) {
+}
+
+// Small devices (landscape phones)
+@media (max-width: 768px) {
+}
+
+// Extra Small devices (phones)
+@media (max-width: 576px) {
+}
