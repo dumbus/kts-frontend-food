@@ -1,6 +1,7 @@
 @use "../../../styles/variables" as *;
 
 .single-recipe {
+  // TODO: fix top padding (problem with header)
   padding: $space-xh $container-padding;
 
   &__error {

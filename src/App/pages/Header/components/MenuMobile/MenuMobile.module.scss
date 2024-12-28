@@ -1,6 +1,6 @@
 @use "../../../../../styles/variables" as *;
 
-.buttons {
+.menu-mobile {
   display: flex;
   align-items: center;
   gap: $space-xxs;
@@ -14,7 +14,7 @@
     cursor: pointer;
     transition: transform 200ms linear;
 
-    &:hover {
+    &:active {
       transform: scale(1.2);
     }
   }

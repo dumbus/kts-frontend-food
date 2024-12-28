@@ -1,4 +1,4 @@
-import { IQueryParams, IMultiDropdownOption } from 'types/entities';
+import { IQueryParams, IMultiDropdownOption, CurrentPageName } from 'types/entities';
 
 import { Categories } from '../enums/categories';
 
@@ -31,4 +31,16 @@ export const getUrlParams = (params: URLSearchParams): IQueryParams => {
   }
 
   return queryParams;
+};
+
+export const getCurrentPageName = (pathname: string): CurrentPageName => {
+  if (pathname.includes('favorites')) {
+    return 'favorites';
+  }
+
+  if (pathname.includes('random')) {
+    return 'random';
+  }
+
+  return 'recipes';
 };

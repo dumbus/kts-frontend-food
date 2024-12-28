@@ -72,3 +72,5 @@ export interface IQueryParams {
 }
 
 export type PageType = 'single' | 'random';
+
+export type CurrentPageName = 'recipes' | 'favorites' | 'random';
