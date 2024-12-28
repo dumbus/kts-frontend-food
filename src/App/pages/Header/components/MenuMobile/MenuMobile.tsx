@@ -4,9 +4,8 @@ import { ROUTES } from 'config/routes';
 
 import { getTimeStamp } from 'utils/helpers';
 
-// TODO: move to components
-import HeartIcon from '../../../../../components/icons/HeartIcon';
-import HomeIcon from '../HomeIcon/HomeIcon';
+import HeartIcon from '../HeartIcon';
+import HomeIcon from '../HomeIcon';
 import RandomIcon from '../RandomIcon';
 
 import styles from './MenuMobile.module.scss';

@@ -1,10 +1,9 @@
 import classNames from 'classnames';
-// import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 
 import imageTemplate from 'assets/recipe-image-template.jpg';
 
-import HeartIcon from 'components/icons/HeartIcon';
+import LikeIcon from 'components/icons/LikeIcon';
 
 import Text from '../Text';
 
@@ -52,7 +51,7 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div className={cardClasses} onClick={onClick}>
-      {isLiked && <HeartIcon width={32} height={32} className={styles['card-like']} />}
+      {isLiked && <LikeIcon width={48} height={48} className={styles['card-like']} />}
 
       <div className={styles['card-image-container']}>
         <img src={imageSrc} alt={title?.toString()} className={styles['card-img']} onError={handleImageError} />
