@@ -35,7 +35,7 @@ const Main = () => {
 
 const App = () => {
   return (
-    <BrowserRouter basename="/kts-frontend-food">
+    <BrowserRouter>
       <Routes>
         <Route path={ROUTES.recipes()} element={<Main />}>
           <Route index element={<RecipesListPage />} />
